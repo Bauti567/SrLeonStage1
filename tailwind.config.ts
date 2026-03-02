@@ -12,6 +12,10 @@ export default {
         "2xl": "1400px",
       },
     },
+    fontFamily: {
+      sans: ['Inter', 'sans-serif'],
+      display: ['Playfair Display', 'serif'],
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
@@ -46,6 +50,10 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        gold: {
+          DEFAULT: "hsl(var(--primary))",
+          glow: "hsl(var(--gold-glow))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
