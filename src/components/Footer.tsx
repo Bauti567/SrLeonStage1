@@ -1,5 +1,3 @@
-import { Camera } from "lucide-react";
-
 const socials = [
   { label: "Instagram", href: "https://instagram.com" },
   { label: "TikTok", href: "https://tiktok.com" },
@@ -10,12 +8,9 @@ const socials = [
 const Footer = () => (
   <footer className="border-t border-border py-12 px-6">
     <div className="mx-auto max-w-6xl flex flex-col md:flex-row items-center justify-between gap-8">
-      <div className="flex items-center gap-2">
-        <Camera className="h-5 w-5 text-primary" />
-        <span className="font-display text-lg font-semibold text-foreground">
-          Lumina<span className="text-gradient-gold">Studio</span>
-        </span>
-      </div>
+      <span className="text-lg font-black uppercase tracking-tight text-foreground">
+        Señorleonagencia
+      </span>
 
       <div className="flex items-center gap-6">
         {socials.map((s) => (
@@ -24,7 +19,7 @@ const Footer = () => (
             href={s.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-muted-foreground hover:text-primary transition-colors uppercase tracking-wide"
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors uppercase tracking-wide"
           >
             {s.label}
           </a>
@@ -32,7 +27,7 @@ const Footer = () => (
       </div>
 
       <p className="text-xs text-muted-foreground">
-        © 2026 LuminaStudio. Todos los derechos reservados.
+        © 2026 Señorleonagencia. Todos los derechos reservados.
       </p>
     </div>
   </footer>
