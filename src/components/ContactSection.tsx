@@ -23,11 +23,12 @@ const ContactSection = () => {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <p className="text-primary text-sm uppercase tracking-[0.3em] font-medium mb-4">
+          <p className="text-xs uppercase tracking-[0.3em] font-semibold text-muted-foreground mb-4">
             Contacto
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold mb-6">
-            Hablemos de tu <span className="text-gradient-gold">proyecto</span>
+          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-6 text-foreground">
+            Hablemos de tu{" "}
+            <span className="text-gradient-green">proyecto</span>
           </h2>
         </motion.div>
 
@@ -45,7 +46,7 @@ const ContactSection = () => {
             </p>
             <div className="space-y-5">
               {[
-                { icon: Mail, text: "hola@luminastudio.com" },
+                { icon: Mail, text: "hola@senorleonagencia.com" },
                 { icon: Phone, text: "+57 300 123 4567" },
                 { icon: MapPin, text: "Bogotá, Colombia" },
               ].map(({ icon: Icon, text }) => (
@@ -73,7 +74,7 @@ const ContactSection = () => {
               required
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="w-full rounded-xl border border-border bg-card px-5 py-3.5 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none transition-colors"
+              className="w-full rounded-xl border border-border bg-card px-5 py-3.5 text-foreground placeholder:text-muted-foreground focus:border-foreground focus:outline-none transition-colors"
             />
             <input
               type="email"
@@ -81,7 +82,7 @@ const ContactSection = () => {
               required
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className="w-full rounded-xl border border-border bg-card px-5 py-3.5 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none transition-colors"
+              className="w-full rounded-xl border border-border bg-card px-5 py-3.5 text-foreground placeholder:text-muted-foreground focus:border-foreground focus:outline-none transition-colors"
             />
             <textarea
               placeholder="Cuéntanos sobre tu proyecto..."
@@ -89,11 +90,11 @@ const ContactSection = () => {
               required
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
-              className="w-full rounded-xl border border-border bg-card px-5 py-3.5 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none transition-colors resize-none"
+              className="w-full rounded-xl border border-border bg-card px-5 py-3.5 text-foreground placeholder:text-muted-foreground focus:border-foreground focus:outline-none transition-colors resize-none"
             />
             <button
               type="submit"
-              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3.5 rounded-xl font-medium hover:opacity-90 transition-opacity"
+              className="inline-flex items-center gap-2 bg-foreground text-background px-8 py-3.5 rounded-xl font-bold uppercase tracking-wide text-sm hover:opacity-90 transition-opacity"
             >
               Enviar mensaje
               <Send className="h-4 w-4" />
