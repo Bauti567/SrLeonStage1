@@ -1,55 +1,59 @@
 import { motion } from "framer-motion";
+import logoNegro from "@/assets/logo_negro.png";
 
 const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-background"
+      className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-background pt-24"
     >
-      {/* Decorative crosshairs */}
-      <div className="absolute left-8 md:left-16 top-1/2 -translate-y-1/2 text-foreground opacity-40">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-          <line x1="16" y1="0" x2="16" y2="32" stroke="currentColor" strokeWidth="1" />
-          <line x1="0" y1="16" x2="32" y2="16" stroke="currentColor" strokeWidth="1" />
-          <rect x="12" y="12" width="8" height="8" stroke="currentColor" strokeWidth="1" fill="none" />
-        </svg>
-      </div>
-      <div className="absolute right-8 md:right-16 top-1/2 -translate-y-1/2 text-foreground opacity-40">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-          <line x1="16" y1="0" x2="16" y2="32" stroke="currentColor" strokeWidth="1" />
-          <line x1="0" y1="16" x2="32" y2="16" stroke="currentColor" strokeWidth="1" />
-          <rect x="12" y="12" width="8" height="8" stroke="currentColor" strokeWidth="1" fill="none" />
-        </svg>
+      {/* Top content area */}
+      <div className="mx-auto max-w-7xl w-full px-6 flex-1 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 py-12">
+        {/* Left side - year & counter */}
+        <div className="flex items-center gap-12 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+          <span>2024</span>
+          <span>01—06</span>
+        </div>
+
+        {/* Right side - tagline + badge */}
+        <div className="max-w-sm text-right space-y-6">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-foreground leading-tight">
+            Alcanza resultados poderosos con{" "}
+            <span className="text-gradient-brand">contenido digital</span>
+          </h2>
+          <div className="flex items-center justify-end gap-3">
+            <img
+              src={logoNegro}
+              alt="Sr Leon Agencia logo"
+              className="w-8 h-8 object-contain dark:invert"
+            />
+            <span className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground leading-tight">
+              cambiemos el mundo
+              <br />
+              con contenido
+            </span>
+          </div>
+        </div>
       </div>
 
-      {/* Main title */}
-      <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
-        <motion.h1
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter text-foreground leading-[0.9]"
-        >
-          Señorleon
-          <br />
-          <span className="relative inline-block">
-            agencia
-            <motion.span
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ delay: 0.6, duration: 0.5 }}
-              className="absolute -bottom-2 left-0 w-full h-1.5 bg-primary origin-left"
-            />
-          </span>
-        </motion.h1>
-      </div>
+      {/* Bottom: Giant agency name */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="w-full px-4 pb-6"
+      >
+        <h1 className="text-[12vw] md:text-[11vw] lg:text-[10vw] font-black uppercase tracking-tighter text-foreground leading-[0.85] whitespace-nowrap overflow-hidden text-center">
+          SR<span className="text-gradient-brand">LEON</span>AGENCIA
+        </h1>
+      </motion.div>
 
       {/* Bottom categories bar */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8, duration: 0.6 }}
-        className="absolute bottom-0 left-0 right-0 border-t border-border"
+        transition={{ delay: 0.6, duration: 0.5 }}
+        className="border-t border-border"
       >
         <div className="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
           {["Producción", "Estrategia", "Social Media", "Contáctanos"].map((item) => (
@@ -60,7 +64,6 @@ const HeroSection = () => {
               {item}
             </span>
           ))}
-          {/* Mobile: show fewer */}
           <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground sm:hidden">
             Producción
           </span>

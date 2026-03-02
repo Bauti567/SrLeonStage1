@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Sun, Moon } from "lucide-react";
+import { useTheme } from "@/hooks/use-theme";
+import logoNegro from "@/assets/logo_negro.png";
 
 const navItems = [
   { label: "Inicio", href: "#hero" },
@@ -11,6 +13,7 @@ const navItems = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -33,24 +36,44 @@ const Navbar = () => {
       }`}
     >
       <div className="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
-        {/* Left: MENU toggle */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground hover:text-muted-foreground transition-colors"
-        >
-          {menuOpen ? "CERRAR" : "MENÚ"}
-        </button>
+        {/* Left: Logo + Menu */}
+        <div className="flex items-center gap-6">
+          <img
+            src={logoNegro}
+            alt="Sr Leon Agencia"
+            className="w-8 h-8 object-contain dark:invert"
+          />
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground hover:text-muted-foreground transition-colors"
+          >
+            {menuOpen ? "CERRAR" : "MENÚ"}
+          </button>
+        </div>
 
-        {/* Right: CTA */}
-        <button
-          onClick={() => handleClick("#contact")}
-          className="group flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-foreground hover:text-muted-foreground transition-colors"
-        >
-          Hablemos
-          <span className="inline-flex items-center justify-center rounded-full border border-foreground w-7 h-7 group-hover:bg-foreground group-hover:text-background transition-all duration-300">
-            <ArrowUpRight className="h-3.5 w-3.5" />
-          </span>
-        </button>
+        {/* Right: Theme toggle + CTA */}
+        <div className="flex items-center gap-4">
+          <button
+            onClick={toggleTheme}
+            className="inline-flex items-center justify-center rounded-full border border-border w-9 h-9 hover:bg-secondary transition-colors"
+            aria-label="Cambiar tema"
+          >
+            {theme === "light" ? (
+              <Moon className="h-4 w-4 text-foreground" />
+            ) : (
+              <Sun className="h-4 w-4 text-foreground" />
+            )}
+          </button>
+          <button
+            onClick={() => handleClick("#contact")}
+            className="group flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-foreground hover:text-muted-foreground transition-colors"
+          >
+            Hablemos
+            <span className="inline-flex items-center justify-center rounded-full border border-foreground w-7 h-7 group-hover:bg-foreground group-hover:text-background transition-all duration-300">
+              <ArrowUpRight className="h-3.5 w-3.5" />
+            </span>
+          </button>
+        </div>
       </div>
 
       {/* Overlay menu */}

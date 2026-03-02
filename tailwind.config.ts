@@ -55,6 +55,9 @@ export default {
           DEFAULT: "hsl(var(--primary))",
           glow: "hsl(var(--gold-glow))",
         },
+        orange: {
+          DEFAULT: "hsl(var(--accent))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
