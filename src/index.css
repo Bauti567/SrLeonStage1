@@ -133,6 +133,7 @@
 
   .shine-effect {
     position: relative;
+    display: inline-block;
     overflow: hidden;
   }
 
