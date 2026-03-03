@@ -130,4 +130,42 @@
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
   }
+
+  .shine-effect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shine-effect::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 40%;
+    height: 200%;
+    background: linear-gradient(
+      105deg,
+      transparent 0%,
+      transparent 40%,
+      rgba(255, 255, 255, 0.3) 45%,
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0.3) 55%,
+      transparent 60%,
+      transparent 100%
+    );
+    animation: shine-sweep 3s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes shine-sweep {
+    0% {
+      left: -60%;
+    }
+    50% {
+      left: 120%;
+    }
+    100% {
+      left: 120%;
+    }
+  }
 }
