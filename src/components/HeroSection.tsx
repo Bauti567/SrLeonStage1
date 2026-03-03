@@ -49,7 +49,7 @@ const HeroSection = () => {
         className="w-full px-4 pb-6"
       >
         <h1 className="text-[12vw] md:text-[11vw] lg:text-[10vw] font-black uppercase tracking-tighter text-foreground leading-[0.85] whitespace-nowrap overflow-hidden text-center">
-          SR<span className="text-gradient-brand shine-effect">LEON</span>AGENCIA
+          SR<span className="text-gradient-brand">LEON</span>AGENCIA
         </h1>
       </motion.div>
 
