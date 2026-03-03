@@ -2,6 +2,11 @@ import { motion } from "framer-motion";
 import logoNegro from "@/assets/logo_negro.png";
 
 const HeroSection = () => {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+
   return (
     <section
       id="hero"
@@ -9,10 +14,10 @@ const HeroSection = () => {
     >
       {/* Top content area */}
       <div className="mx-auto max-w-7xl w-full px-6 flex-1 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 py-12">
-        {/* Left side - year & counter */}
+        {/* Left side - date */}
         <div className="flex items-center gap-12 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-          <span>2024</span>
-          <span>01—06</span>
+          <span>{year}</span>
+          <span>{month}—{day}</span>
         </div>
 
         {/* Right side - tagline + badge */}
@@ -44,7 +49,7 @@ const HeroSection = () => {
         className="w-full px-4 pb-6"
       >
         <h1 className="text-[12vw] md:text-[11vw] lg:text-[10vw] font-black uppercase tracking-tighter text-foreground leading-[0.85] whitespace-nowrap overflow-hidden text-center">
-          SR<span className="text-gradient-brand">LEON</span>AGENCIA
+          SR<span className="text-gradient-brand shine-effect">LEON</span>AGENCIA
         </h1>
       </motion.div>
 

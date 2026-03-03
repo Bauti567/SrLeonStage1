@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Sun, Moon } from "lucide-react";
-import { useTheme } from "@/hooks/use-theme";
+import { ArrowUpRight } from "lucide-react";
 import logoNegro from "@/assets/logo_negro.png";
 
 const navItems = [
@@ -13,7 +12,6 @@ const navItems = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -51,19 +49,8 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Right: Theme toggle + CTA */}
+        {/* Right: CTA */}
         <div className="flex items-center gap-4">
-          <button
-            onClick={toggleTheme}
-            className="inline-flex items-center justify-center rounded-full border border-border w-9 h-9 hover:bg-secondary transition-colors"
-            aria-label="Cambiar tema"
-          >
-            {theme === "light" ? (
-              <Moon className="h-4 w-4 text-foreground" />
-            ) : (
-              <Sun className="h-4 w-4 text-foreground" />
-            )}
-          </button>
           <button
             onClick={() => handleClick("#contact")}
             className="group flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-foreground hover:text-muted-foreground transition-colors"
