@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Send, Mail, MapPin, Phone } from "lucide-react";
+import { Send, Mail, MapPin, Phone, Copy } from "lucide-react";
 import { toast } from "sonner";
 
 const ContactSection = () => {
@@ -46,15 +46,27 @@ const ContactSection = () => {
             </p>
             <div className="space-y-5">
               {[
-                { icon: Mail, text: "hola@senorleonagencia.com" },
-                { icon: Phone, text: "+57 300 123 4567" },
-                { icon: MapPin, text: "Bogotá, Colombia" },
-              ].map(({ icon: Icon, text }) => (
-                <div key={text} className="flex items-center gap-4">
+                { icon: Mail, text: "hola@senorleonagencia.com", copyable: true },
+                { icon: Phone, text: "+57 300 123 4567", copyable: false },
+                { icon: MapPin, text: "Bogotá, Colombia", copyable: false },
+              ].map(({ icon: Icon, text, copyable }) => (
+                <div key={text} className="flex items-center gap-4 group">
                   <div className="rounded-lg bg-secondary p-2.5">
                     <Icon className="h-5 w-5 text-primary" />
                   </div>
                   <span className="text-secondary-foreground">{text}</span>
+                  {copyable && (
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText(text);
+                        toast.success("Email copiado al portapapeles");
+                      }}
+                      className="opacity-0 group-hover:opacity-100 transition-opacity p-1.5 rounded-md hover:bg-secondary"
+                      aria-label="Copiar email"
+                    >
+                      <Copy className="h-4 w-4 text-muted-foreground" />
+                    </button>
+                  )}
                 </div>
               ))}
             </div>
