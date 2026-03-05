@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import logoNegro from "@/assets/logo_negro.png";
+import BeamBackground from "./BeamBackground";
 
 const HeroSection = () => {
   const now = new Date();
@@ -12,6 +13,7 @@ const HeroSection = () => {
       id="hero"
       className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-background pt-24"
     >
+      <BeamBackground />
       {/* Top content area */}
       <div className="mx-auto max-w-7xl w-full px-6 flex-1 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 py-12">
         {/* Left side - date */}
