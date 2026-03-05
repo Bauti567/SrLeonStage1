@@ -2,11 +2,40 @@ import { motion } from "framer-motion";
 import logoNegro from "@/assets/logo_negro.png";
 import BeamBackground from "./BeamBackground";
 
+const heroNavItems = [
+  { label: "Producción", href: "#services" },
+  { label: "Estrategia", href: "#services" },
+  { label: "Social Media", href: "#services" },
+  { label: "Contáctanos", href: "#contact" },
+];
+
+const letterVariants = {
+  hidden: { y: -120, opacity: 0, rotateX: 45 },
+  visible: (i: number) => ({
+    y: 0,
+    opacity: 1,
+    rotateX: 0,
+    transition: {
+      delay: 0.3 + i * 0.04,
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+    },
+  }),
+};
+
 const HeroSection = () => {
   const now = new Date();
   const year = now.getFullYear();
   const month = String(now.getMonth() + 1).padStart(2, "0");
   const day = String(now.getDate()).padStart(2, "0");
+
+  const titleText = "SR";
+  const brandText = "LEON";
+  const suffixText = "AGENCIA";
+
+  const handleScroll = (href: string) => {
+    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <section
@@ -43,17 +72,47 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Bottom: Giant agency name */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="w-full px-4 pb-6"
-      >
-        <h1 className="text-[12vw] md:text-[11vw] lg:text-[10vw] font-black uppercase tracking-tighter text-foreground leading-[0.85] whitespace-nowrap overflow-hidden text-center">
-          SR<span className="text-gradient-brand">LEON</span>AGENCIA
+      {/* Bottom: Giant agency name with falling letters */}
+      <div className="w-full px-4 pb-6 overflow-hidden">
+        <h1 className="text-[12vw] md:text-[11vw] lg:text-[10vw] font-black uppercase tracking-tighter text-foreground leading-[0.85] whitespace-nowrap text-center flex items-center justify-center" style={{ perspective: "800px" }}>
+          {titleText.split("").map((char, i) => (
+            <motion.span
+              key={`sr-${i}`}
+              custom={i}
+              initial="hidden"
+              animate="visible"
+              variants={letterVariants}
+              className="inline-block"
+            >
+              {char}
+            </motion.span>
+          ))}
+          {brandText.split("").map((char, i) => (
+            <motion.span
+              key={`leon-${i}`}
+              custom={titleText.length + i}
+              initial="hidden"
+              animate="visible"
+              variants={letterVariants}
+              className="inline-block text-gradient-brand"
+            >
+              {char}
+            </motion.span>
+          ))}
+          {suffixText.split("").map((char, i) => (
+            <motion.span
+              key={`agencia-${i}`}
+              custom={titleText.length + brandText.length + i}
+              initial="hidden"
+              animate="visible"
+              variants={letterVariants}
+              className="inline-block"
+            >
+              {char}
+            </motion.span>
+          ))}
         </h1>
-      </motion.div>
+      </div>
 
       {/* Bottom categories bar */}
       <motion.div
@@ -63,23 +122,15 @@ const HeroSection = () => {
         className="border-t border-border"
       >
         <div className="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
-          {["Producción", "Estrategia", "Social Media", "Contáctanos"].map((item) => (
-            <span
-              key={item}
-              className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors cursor-pointer hidden sm:block"
+          {heroNavItems.map((item) => (
+            <button
+              key={item.label}
+              onClick={() => handleScroll(item.href)}
+              className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             >
-              {item}
-            </span>
+              {item.label}
+            </button>
           ))}
-          <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground sm:hidden">
-            Producción
-          </span>
-          <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground sm:hidden">
-            Estrategia
-          </span>
-          <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground sm:hidden">
-            Contacto
-          </span>
         </div>
       </motion.div>
     </section>
