@@ -46,24 +46,23 @@ const AboutSection = () => {
           <p className="text-xs uppercase tracking-[0.3em] font-semibold text-muted-foreground mb-2 text-center">
             Sobre Nosotros
           </p>
-          <p className="text-xs uppercase tracking-[0.3em] font-bold text-foreground mb-10 text-center">
-            Señorleonagencia
-          </p>
 
           <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-foreground leading-[1.05] text-center max-w-5xl mx-auto uppercase tracking-tight">
-            Crees que trabajamos para ti.{" "}
-            <span className="relative inline">
-              En realidad
-              <motion.span
-                initial={{ rotate: 0 }}
-                animate={isInView ? { rotate: -6 } : {}}
-                transition={{ delay: 0.5, duration: 0.4 }}
-                className="absolute -top-8 -left-4 bg-foreground text-background text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-sm hidden md:inline-block"
-              >
-                Señorleon
-              </motion.span>
-            </span>{" "}
-            jugamos, y de alguna forma eso ayuda a crecer tu negoci
+            <motion.span
+              initial={{ rotate: 0 }}
+              animate={isInView ? { rotate: -8 } : {}}
+              transition={{ delay: 0.5, duration: 0.4 }}
+              className="inline-block text-gradient-brand text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-sm mr-2 align-top mt-1 sm:mt-2 bg-foreground"
+              style={{
+                backgroundImage: "linear-gradient(135deg, hsl(80 70% 45%), hsl(30 90% 55%))",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Señorleon
+            </motion.span>
+            Crees que trabajamos para ti. En realidad jugamos, y de alguna forma eso ayuda a crecer tu negoci
             <span className="relative inline-block">
               o
               <svg className="absolute -bottom-1 -right-6 w-5 h-5 text-primary" viewBox="0 0 20 20" fill="currentColor">
