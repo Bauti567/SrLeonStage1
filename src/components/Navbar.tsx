@@ -6,6 +6,7 @@ import logoNegro from "@/assets/logo_negro.png";
 const navItems = [
   { label: "Inicio", href: "#hero" },
   { label: "Nosotros", href: "#about" },
+  { label: "Servicios", href: "#services" },
   { label: "Contacto", href: "#contact" },
 ];
 
