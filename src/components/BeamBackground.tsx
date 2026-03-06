@@ -32,8 +32,8 @@ function createBeam(width: number, height: number, layer: number): Beam {
   };
 }
 
-const LAYERS = 3;
-const BEAMS_PER_LAYER = 8;
+const LAYERS = 2;
+const BEAMS_PER_LAYER = 4;
 
 const BeamBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);

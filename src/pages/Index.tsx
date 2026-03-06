@@ -1,16 +1,22 @@
+import { lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import AboutSection from "@/components/AboutSection";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
+
+const AboutSection = lazy(() => import("@/components/AboutSection"));
+const ServicesSection = lazy(() => import("@/components/ServicesSection"));
+const ContactSection = lazy(() => import("@/components/ContactSection"));
+const Footer = lazy(() => import("@/components/Footer"));
 
 const Index = () => (
   <div className="min-h-screen bg-background">
     <Navbar />
     <HeroSection />
-    <AboutSection />
-    <ContactSection />
-    <Footer />
+    <Suspense fallback={null}>
+      <AboutSection />
+      <ServicesSection />
+      <ContactSection />
+      <Footer />
+    </Suspense>
   </div>
 );
 

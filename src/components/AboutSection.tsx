@@ -54,7 +54,7 @@ const AboutSection = () => {
               initial={{ rotate: 0, opacity: 0 }}
               animate={isInView ? { rotate: -12, opacity: 1 } : {}}
               transition={{ delay: 0.5, duration: 0.4 }}
-              className="absolute -top-3 left-[5%] sm:left-[8%] z-10 inline-block bg-foreground text-background text-[10px] sm:text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-sm"
+              className="absolute -top-3 left-[5%] sm:left-[8%] z-10 inline-block bg-background text-foreground text-[10px] sm:text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-sm border border-border"
             >
               <span className="text-gradient-brand">Señorleon</span>
             </motion.span>

@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
+import { lazy, Suspense } from "react";
 import logoNegro from "@/assets/logo_negro.png";
-import BeamBackground from "./BeamBackground";
+import SplitText from "./SplitText";
+
+const BeamBackground = lazy(() => import("./BeamBackground"));
 
 const heroNavItems = [
   { label: "Producción", href: "#services" },
@@ -9,29 +12,11 @@ const heroNavItems = [
   { label: "Contáctanos", href: "#contact" },
 ];
 
-const letterVariants = {
-  hidden: { y: -120, opacity: 0, rotateX: 45 },
-  visible: (i: number) => ({
-    y: 0,
-    opacity: 1,
-    rotateX: 0,
-    transition: {
-      delay: 0.3 + i * 0.04,
-      duration: 0.8,
-      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
-    },
-  }),
-};
-
 const HeroSection = () => {
   const now = new Date();
   const year = now.getFullYear();
   const month = String(now.getMonth() + 1).padStart(2, "0");
   const day = String(now.getDate()).padStart(2, "0");
-
-  const titleText = "SR";
-  const brandText = "LEON";
-  const suffixText = "AGENCIA";
 
   const handleScroll = (href: string) => {
     document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
@@ -42,7 +27,10 @@ const HeroSection = () => {
       id="hero"
       className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-background pt-24"
     >
-      <BeamBackground />
+      <Suspense fallback={null}>
+        <BeamBackground />
+      </Suspense>
+
       {/* Top content area */}
       <div className="mx-auto max-w-7xl w-full px-6 flex-1 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 py-12">
         {/* Left side - date */}
@@ -72,45 +60,32 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Bottom: Giant agency name with falling letters */}
+      {/* Bottom: Giant agency name with SplitText */}
       <div className="w-full px-4 pb-6 overflow-hidden">
-        <h1 className="text-[12vw] md:text-[11vw] lg:text-[10vw] font-black uppercase tracking-tighter text-foreground leading-[0.85] whitespace-nowrap text-center flex items-center justify-center" style={{ perspective: "800px" }}>
-          {titleText.split("").map((char, i) => (
-            <motion.span
-              key={`sr-${i}`}
-              custom={i}
-              initial="hidden"
-              animate="visible"
-              variants={letterVariants}
-              className="inline-block"
-            >
-              {char}
-            </motion.span>
-          ))}
-          {brandText.split("").map((char, i) => (
-            <motion.span
-              key={`leon-${i}`}
-              custom={titleText.length + i}
-              initial="hidden"
-              animate="visible"
-              variants={letterVariants}
-              className="inline-block text-gradient-brand"
-            >
-              {char}
-            </motion.span>
-          ))}
-          {suffixText.split("").map((char, i) => (
-            <motion.span
-              key={`agencia-${i}`}
-              custom={titleText.length + brandText.length + i}
-              initial="hidden"
-              animate="visible"
-              variants={letterVariants}
-              className="inline-block"
-            >
-              {char}
-            </motion.span>
-          ))}
+        <h1 className="text-[12vw] md:text-[11vw] lg:text-[10vw] font-black uppercase tracking-tighter text-foreground leading-[0.85] whitespace-nowrap text-center flex items-center justify-center">
+          <SplitText
+            text="SR"
+            delay={40}
+            duration={0.8}
+            from={{ opacity: 0, y: -120, rotateX: 45 }}
+            to={{ opacity: 1, y: 0, rotateX: 0 }}
+          />
+          <span className="text-gradient-brand">
+            <SplitText
+              text="LEON"
+              delay={40}
+              duration={0.8}
+              from={{ opacity: 0, y: -120, rotateX: 45 }}
+              to={{ opacity: 1, y: 0, rotateX: 0 }}
+            />
+          </span>
+          <SplitText
+            text="AGENCIA"
+            delay={40}
+            duration={0.8}
+            from={{ opacity: 0, y: -120, rotateX: 45 }}
+            to={{ opacity: 1, y: 0, rotateX: 0 }}
+          />
         </h1>
       </div>
 
