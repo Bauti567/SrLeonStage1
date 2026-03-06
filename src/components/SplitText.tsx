@@ -4,6 +4,7 @@ import { useRef, memo } from "react";
 interface SplitTextProps {
   text: string;
   className?: string;
+  letterClassName?: string;
   delay?: number;
   duration?: number;
   splitType?: "chars" | "words";
@@ -17,6 +18,7 @@ interface SplitTextProps {
 const SplitText = memo(({
   text,
   className = "",
+  letterClassName = "",
   delay = 40,
   duration = 0.6,
   splitType = "chars",
@@ -46,7 +48,7 @@ const SplitText = memo(({
             },
           } : from}
           onAnimationComplete={i === items.length - 1 ? onAnimationComplete : undefined}
-          className="inline-block"
+          className={`inline-block ${letterClassName}`}
           style={{ whiteSpace: item === " " ? "pre" : undefined }}
         >
           {item === " " ? "\u00A0" : item}

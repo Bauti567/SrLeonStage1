@@ -70,15 +70,14 @@ const HeroSection = () => {
             from={{ opacity: 0, y: -120, rotateX: 45 }}
             to={{ opacity: 1, y: 0, rotateX: 0 }}
           />
-          <span className="text-gradient-brand">
-            <SplitText
-              text="LEON"
-              delay={40}
-              duration={0.8}
-              from={{ opacity: 0, y: -120, rotateX: 45 }}
-              to={{ opacity: 1, y: 0, rotateX: 0 }}
-            />
-          </span>
+          <SplitText
+            text="LEON"
+            letterClassName="text-gradient-brand"
+            delay={40}
+            duration={0.8}
+            from={{ opacity: 0, y: -120, rotateX: 45 }}
+            to={{ opacity: 1, y: 0, rotateX: 0 }}
+          />
           <SplitText
             text="AGENCIA"
             delay={40}
