@@ -8,7 +8,8 @@ const testimonials = [
     role: "Marketing Manager",
     color: "bg-[hsl(270,60%,65%)]",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face&q=60",
-    rotation: "-rotate-2",
+    position: "top-0 left-[5%]",
+    rotation: "-rotate-3",
   },
   {
     quote: "Trabajar con este equipo fue muy fácil. Entendieron nuestra visión de inmediato y entregaron diseños que capturaron nuestra marca perfectamente.",
@@ -16,7 +17,8 @@ const testimonials = [
     role: "Founder",
     color: "bg-accent",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face&q=60",
-    rotation: "rotate-1",
+    position: "top-0 right-[5%]",
+    rotation: "rotate-2",
   },
   {
     quote: "Del branding al diseño web, todo se sintió cohesivo y de primer nivel. Los recomiendo para cualquier proyecto digital.",
@@ -24,7 +26,8 @@ const testimonials = [
     role: "CEO",
     color: "bg-[hsl(185,50%,55%)]",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face&q=60",
-    rotation: "-rotate-1",
+    position: "bottom-0 left-[5%]",
+    rotation: "-rotate-2",
   },
   {
     quote: "Profesionales, responsivos e increíblemente creativos. Su trabajo de UI/UX mejoró nuestro engagement de usuarios en más del 40%.",
@@ -32,8 +35,16 @@ const testimonials = [
     role: "Product Lead",
     color: "bg-[hsl(140,55%,75%)]",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face&q=60",
-    rotation: "rotate-2",
+    position: "bottom-0 right-[5%]",
+    rotation: "rotate-3",
   },
+];
+
+const decorativeImages = [
+  { src: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=200&h=200&fit=crop&q=60", position: "top-[8%] left-[32%]", rotation: "rotate-6", size: "w-28 h-28" },
+  { src: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=200&h=200&fit=crop&q=60", position: "top-[8%] right-[32%]", rotation: "-rotate-3", size: "w-24 h-24" },
+  { src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=200&h=200&fit=crop&q=60", position: "bottom-[12%] left-[28%]", rotation: "-rotate-6", size: "w-28 h-28" },
+  { src: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=200&h=200&fit=crop&q=60", position: "bottom-[8%] right-[30%]", rotation: "rotate-4", size: "w-24 h-24" },
 ];
 
 const ScrollChar = ({
@@ -96,21 +107,48 @@ const TestimonialsSection = () => {
         </div>
       </div>
 
-      {/* Testimonial cards */}
+      {/* Bento / post-it style layout */}
       <div ref={cardsRef} className="px-6 pb-28 -mt-[30vh]">
-        <p className="text-muted-foreground text-xs uppercase tracking-[0.2em] text-center mb-12">
+        <p className="text-muted-foreground text-xs uppercase tracking-[0.2em] text-center mb-16">
           Descubre cómo hemos ayudado a marcas a crecer con estrategia, diseño e innovación.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto relative z-10">
+
+        <div className="relative max-w-6xl mx-auto min-h-[700px] md:min-h-[600px]">
+          {/* Center title */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+            <h3 className="text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-tight text-foreground text-center leading-[0.95]">
+              Stories from<br />our happy clients
+            </h3>
+          </div>
+
+          {/* Decorative images scattered */}
+          {decorativeImages.map((img, i) => (
+            <motion.div
+              key={`deco-${i}`}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={cardsInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.5, delay: 0.1 * i }}
+              className={`absolute ${img.position} ${img.rotation} ${img.size} hidden md:block z-10`}
+            >
+              <img
+                src={img.src}
+                alt=""
+                className="w-full h-full object-cover rounded-xl shadow-lg"
+                loading="lazy"
+              />
+            </motion.div>
+          ))}
+
+          {/* Testimonial cards as post-its */}
           {testimonials.map((t, i) => (
             <motion.div
               key={t.name}
               initial={{ opacity: 0, y: 40 }}
               animate={cardsInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.15 * i }}
-              className={`${t.color} ${t.rotation} rounded-2xl p-6 flex flex-col justify-between min-h-[220px] hover:rotate-0 transition-transform duration-300`}
+              className={`absolute ${t.position} ${t.rotation} ${t.color} rounded-2xl p-5 max-w-[280px] hover:rotate-0 transition-transform duration-300 z-20 shadow-lg`}
             >
-              <p className="text-sm font-bold uppercase leading-relaxed text-foreground">
+              <p className="text-xs sm:text-sm font-bold uppercase leading-relaxed text-foreground">
                 "{t.quote}"
               </p>
               <div className="flex items-center gap-3 mt-4">
