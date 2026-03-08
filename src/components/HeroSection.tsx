@@ -13,10 +13,14 @@ const heroNavItems = [
 ];
 
 const HeroSection = () => {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, "0");
-  const day = String(now.getDate()).padStart(2, "0");
+  const { year, month, day } = useMemo(() => {
+    const now = new Date();
+    return {
+      year: now.getFullYear(),
+      month: String(now.getMonth() + 1).padStart(2, "0"),
+      day: String(now.getDate()).padStart(2, "0"),
+    };
+  }, []);
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);

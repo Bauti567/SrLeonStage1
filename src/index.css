@@ -107,10 +107,6 @@
 }
 
 @layer utilities {
-  .font-display {
-    font-family: 'Playfair Display', serif;
-  }
-
   .font-sans {
     font-family: 'Inter', sans-serif;
   }
