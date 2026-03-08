@@ -1,7 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Sparkles, Video, Palette, TrendingUp } from "lucide-react";
-import ceoDalton from "@/assets/ceo-dalton.jpeg";
 
 const services = [
   {
@@ -72,39 +71,6 @@ const AboutSection = () => {
           <p className="text-xs sm:text-sm uppercase tracking-[0.15em] text-muted-foreground text-center mt-12 max-w-md mx-auto leading-relaxed">
             Agencia de marketing digital que te ayuda a promocionar tus productos o servicios en línea
           </p>
-        </motion.div>
-
-        {/* About Me - CEO — layout like reference image */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mb-20 flex flex-col md:flex-row items-center gap-10 md:gap-16"
-        >
-          {/* Left: circular photo */}
-          <div className="relative w-48 h-48 sm:w-56 sm:h-56 flex-shrink-0">
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-accent opacity-30 blur-xl" />
-            <img
-              src={ceoDalton}
-              alt="Santiago León - CEO"
-              className="relative w-full h-full rounded-full object-cover border-2 border-border"
-              loading="lazy"
-            />
-          </div>
-
-          {/* Right: name + bio */}
-          <div className="text-center md:text-left">
-            <h3 className="text-4xl sm:text-5xl md:text-6xl font-black text-foreground uppercase tracking-tight leading-[0.95]">
-              Santiago
-              <br />
-              León
-            </h3>
-            <div className="mt-4 space-y-2 text-sm text-muted-foreground max-w-md">
-              <p>🎬 Creación de contenido | Estrategia digital 🧠</p>
-              <p>🧑‍💻 + 1000M de reproducciones orgánicas 📲</p>
-              <p>Prof. Cine y Tv 🎥 | Esp. En Fotografía 📸</p>
-            </div>
-          </div>
         </motion.div>
 
         {/* Services grid */}
