@@ -1,21 +1,55 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import ceoDalton from "@/assets/ceo-dalton.jpeg";
 
 const CeoSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  // Split reveal: top half moves up, bottom half moves down
+  const topY = useTransform(scrollYProgress, [0.15, 0.45], ["0%", "-30%"]);
+  const bottomY = useTransform(scrollYProgress, [0.15, 0.45], ["0%", "30%"]);
+  const clipTop = useTransform(scrollYProgress, [0.15, 0.45], [50, 0]);
+  const clipBottom = useTransform(scrollYProgress, [0.15, 0.45], [50, 100]);
+  const contentOpacity = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
+  const contentY = useTransform(scrollYProgress, [0.2, 0.4], [60, 0]);
 
   return (
-    <section className="py-28 px-6" ref={ref}>
-      <div className="mx-auto max-w-6xl">
+    <section ref={containerRef} className="relative min-h-[200vh]">
+      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+        {/* Split title overlay */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col md:flex-row items-center gap-10 md:gap-16"
+          className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none"
+          style={{
+            clipPath: useTransform(
+              [clipTop, clipBottom],
+              ([t, b]: number[]) =>
+                `polygon(0 0, 100% 0, 100% ${t}%, 0 ${t}%, 0 ${b}%, 100% ${b}%, 100% 100%, 0 100%)`
+            ),
+          }}
         >
-          {/* Circular photo */}
+          <motion.div style={{ y: topY }} className="text-center">
+            <h3 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter text-foreground leading-none">
+              <span className="text-gradient-brand">CEO</span> Santiago
+            </h3>
+          </motion.div>
+          <motion.div style={{ y: bottomY }} className="text-center">
+            <h3 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter text-foreground leading-none">
+              León
+            </h3>
+          </motion.div>
+        </motion.div>
+
+        {/* Content revealed behind */}
+        <motion.div
+          style={{ opacity: contentOpacity, y: contentY }}
+          className="relative z-0 flex flex-col md:flex-row items-center gap-10 md:gap-16 px-6 max-w-6xl mx-auto"
+        >
+          {/* Photo */}
           <div className="relative w-48 h-48 sm:w-56 sm:h-56 flex-shrink-0">
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-accent opacity-30 blur-xl" />
             <img
@@ -26,7 +60,7 @@ const CeoSection = () => {
             />
           </div>
 
-          {/* Name + bio */}
+          {/* Info */}
           <div className="text-center md:text-left">
             <h3 className="text-4xl sm:text-5xl md:text-6xl font-black text-foreground uppercase tracking-tight leading-[0.95]">
               <span className="text-gradient-brand">CEO</span> Santiago
