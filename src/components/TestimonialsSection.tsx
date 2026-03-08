@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, memo } from "react";
 import { useI18n } from "@/hooks/use-i18n";
 
 const testimonialMeta = [
@@ -16,7 +16,7 @@ const decorativeImages = [
   { src: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=200&h=200&fit=crop&q=60", position: "bottom-[8%] right-[30%]", rotation: "rotate-4", size: "w-24 h-24" },
 ];
 
-const ScrollChar = ({ char, index, centerIndex, scrollYProgress }: { char: string; index: number; centerIndex: number; scrollYProgress: any }) => {
+const ScrollChar = memo(({ char, index, centerIndex, scrollYProgress }: { char: string; index: number; centerIndex: number; scrollYProgress: any }) => {
   const isSpace = char === " ";
   const dist = index - centerIndex;
   const x = useTransform(scrollYProgress, [0, 0.4], [dist * 45, 0]);
@@ -24,11 +24,16 @@ const ScrollChar = ({ char, index, centerIndex, scrollYProgress }: { char: strin
   const opacity = useTransform(scrollYProgress, [0, 0.25], [0.3, 1]);
 
   return (
-    <motion.span className={`inline-block text-foreground ${isSpace ? "w-3 sm:w-5" : ""}`} style={{ x, rotateX, opacity }}>
+    <motion.span
+      className={`inline-block text-foreground ${isSpace ? "w-3 sm:w-5" : ""}`}
+      style={{ x, rotateX, opacity }}
+    >
       {char}
     </motion.span>
   );
-};
+});
+
+ScrollChar.displayName = "ScrollChar";
 
 const TestimonialsSection = () => {
   const { t } = useI18n();
