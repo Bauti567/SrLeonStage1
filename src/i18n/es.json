@@ -1,0 +1,158 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "services": "Servicios",
+    "branding": "Branding",
+    "contact": "Contacto",
+    "menu": "MENÚ",
+    "close": "CERRAR",
+    "letsTalk": "Hablemos"
+  },
+  "hero": {
+    "tagline": "Alcanza resultados poderosos con",
+    "taglineHighlight": "contenido digital",
+    "motto1": "cambiemos el mundo",
+    "motto2": "con contenido",
+    "nav": {
+      "production": "Producción",
+      "strategy": "Estrategia",
+      "socialMedia": "Social Media",
+      "contactUs": "Contáctanos"
+    }
+  },
+  "about": {
+    "label": "Sobre Nosotros",
+    "badge": "Señorleon",
+    "heading": "Crees que trabajamos para ti. En realidad jugamos, y de alguna forma eso ayuda a crecer tu negocio",
+    "description": "Agencia de marketing digital que te ayuda a promocionar tus productos o servicios en línea",
+    "services": [
+      {
+        "title": "Producción Audiovisual",
+        "description": "Creamos videos cinematográficos que capturan la esencia de tu marca con calidad profesional."
+      },
+      {
+        "title": "Diseño Creativo",
+        "description": "Identidad visual, branding y piezas gráficas que destacan en cualquier plataforma."
+      },
+      {
+        "title": "Estrategia Digital",
+        "description": "Planificamos y ejecutamos estrategias de contenido que generan resultados medibles."
+      },
+      {
+        "title": "Social Media",
+        "description": "Gestionamos tus redes sociales con contenido auténtico que conecta y fideliza."
+      }
+    ]
+  },
+  "services": {
+    "label": "Servicios — SR LEON",
+    "learnMore": "Saber más",
+    "items": [
+      {
+        "id": "01",
+        "tag": "CONTENIDO",
+        "title": "CREACIÓN DE\nCONTENIDO",
+        "description": "Producimos contenido audiovisual de alto impacto que conecta con tu audiencia. Videos, fotografía y piezas creativas diseñadas para destacar en todas las plataformas digitales."
+      },
+      {
+        "id": "02",
+        "tag": "ESTRATEGIA",
+        "title": "ESTRATEGIA\nDIGITAL",
+        "description": "Diseñamos planes estratégicos basados en datos para maximizar tu presencia digital. Analizamos, planificamos y ejecutamos campañas que generan resultados medibles."
+      },
+      {
+        "id": "03",
+        "tag": "BRANDING",
+        "title": "BRANDING",
+        "description": "Construimos identidades de marca memorables. Desde el logo hasta la guía de estilo completa, creamos la personalidad visual que hace única a tu marca."
+      }
+    ]
+  },
+  "ceo": {
+    "role": "CEO",
+    "name": "Santiago León",
+    "bio": [
+      "🎬 Creación de contenido | Estrategia digital 🧠",
+      "🧑‍💻 + 1000M de reproducciones orgánicas 📲",
+      "Prof. Cine y Tv 🎥 | Esp. En Fotografía 📸"
+    ]
+  },
+  "testimonials": {
+    "scrollTitle": "Historias de nuestros clientes",
+    "subtitle": "Descubre cómo hemos ayudado a marcas a crecer con estrategia, diseño e innovación.",
+    "centerTitle": "Creamos contenido\nque transforma marcas",
+    "items": [
+      {
+        "quote": "Transformaron completamente nuestra imagen de marca. El nuevo sitio web se ve moderno y funciona impecablemente. ¡Superaron todas las expectativas!",
+        "name": "Sarah Lim",
+        "role": "Marketing Manager"
+      },
+      {
+        "quote": "Trabajar con este equipo fue muy fácil. Entendieron nuestra visión de inmediato y entregaron diseños que capturaron nuestra marca perfectamente.",
+        "name": "Jonathan Reyes",
+        "role": "Founder"
+      },
+      {
+        "quote": "Del branding al diseño web, todo se sintió cohesivo y de primer nivel. Los recomiendo para cualquier proyecto digital.",
+        "name": "Kevin Lau",
+        "role": "CEO"
+      },
+      {
+        "quote": "Profesionales, responsivos e increíblemente creativos. Su trabajo de UI/UX mejoró nuestro engagement de usuarios en más del 40%.",
+        "name": "Maya Putri",
+        "role": "Product Lead"
+      }
+    ]
+  },
+  "instagram": {
+    "handle": "@srleon.agency",
+    "title1": "Síguenos en",
+    "title2": "Instagram"
+  },
+  "contact": {
+    "heading": "Hablemos de tu",
+    "headingHighlight": "proyecto",
+    "subtitle": "Cuéntanos qué te frena, lo convertiremos en tu próxima ventaja competitiva.",
+    "form": {
+      "name": "Nombre completo *",
+      "email": "Email *",
+      "phone": "Teléfono",
+      "company": "Empresa",
+      "inquiry": "Motivo de consulta *",
+      "budget": "Presupuesto del proyecto *",
+      "details": "Detalles del proyecto *",
+      "submit": "Conectemos",
+      "success": "¡Mensaje enviado! Te contactaremos pronto."
+    },
+    "inquiryOptions": [
+      "Creación de contenido",
+      "Estrategia digital",
+      "Branding",
+      "Social Media",
+      "Otro"
+    ],
+    "budgetOptions": [
+      "Menos de $3K",
+      "$3K-$5K",
+      "$5K-$10K",
+      "$10K-$20K",
+      "Más de $20K"
+    ]
+  },
+  "footer": {
+    "description": "Agencia de marketing digital que te ayuda a impulsar tus productos o servicios en línea",
+    "navLinks": ["Nosotros", "Servicios", "Contacto"],
+    "copyright": "© 2026 — Copyright",
+    "rights": "Todos los derechos reservados",
+    "madeBy": "Diseñado y desarrollado por",
+    "contactTitle": "Contáctanos",
+    "phone": "+57 300 123 4567",
+    "email": "hola@senorleonagencia.com",
+    "locationTitle": "Ubicación",
+    "location": "Bogotá, Colombia"
+  },
+  "whatsapp": {
+    "aria": "Contactar por WhatsApp"
+  }
+}
