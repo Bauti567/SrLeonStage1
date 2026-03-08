@@ -49,7 +49,7 @@ const Footer = () => (
           </p>
           <div className="flex items-center gap-2 mt-3">
             <span className="text-xs text-muted-foreground">Diseñado y desarrollado por</span>
-            <img src={developerIcon} alt="Developer" className="w-5 h-5 invert dark:invert-0" />
+            <img src={developerIcon} alt="Developer" className="w-6 h-6 brightness-0 invert" />
           </div>
         </div>
         <div>

@@ -116,9 +116,14 @@ const TestimonialsSection = () => {
         <div className="relative max-w-6xl mx-auto min-h-[700px] md:min-h-[600px]">
           {/* Center title */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-            <h3 className="text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-tight text-foreground text-center leading-[0.95]">
+            <motion.h3
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={cardsInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.6 }}
+              className="text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight text-foreground/10 text-center leading-[0.95]"
+            >
               Creamos contenido<br />que transforma marcas
-            </h3>
+            </motion.h3>
           </div>
 
           {/* Decorative images scattered */}
