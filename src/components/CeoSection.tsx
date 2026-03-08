@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import ceoDalton from "@/assets/ceo-dalton.jpeg";
 import { useI18n } from "@/hooks/use-i18n";
 
@@ -14,32 +14,33 @@ const CeoSection = () => {
   const clipBottom = useTransform(scrollYProgress, [0.25, 0.55], [50, 100]);
   const contentOpacity = useTransform(scrollYProgress, [0.35, 0.55], [0, 1]);
   const contentY = useTransform(scrollYProgress, [0.35, 0.55], [60, 0]);
+  const clipPath = useTransform(
+    [clipTop, clipBottom],
+    ([tp, bt]: number[]) => `polygon(0 0, 100% 0, 100% ${tp}%, 0 ${tp}%, 0 ${bt}%, 100% ${bt}%, 100% 100%, 0 100%)`
+  );
 
   return (
     <section ref={containerRef} className="relative min-h-[250vh]">
       <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+        {/* Split title overlay */}
         <motion.div
-          className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none"
-          style={{
-            clipPath: useTransform(
-              [clipTop, clipBottom],
-              ([tp, bt]: number[]) => `polygon(0 0, 100% 0, 100% ${tp}%, 0 ${tp}%, 0 ${bt}%, 100% ${bt}%, 100% 100%, 0 100%)`
-            ),
-          }}
+          className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none will-change-[clip-path]"
+          style={{ clipPath }}
         >
-          <motion.div style={{ y: topY }} className="text-center">
+          <motion.div style={{ y: topY }} className="text-center will-change-transform">
             <h3 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter text-foreground leading-none">
               <span className="text-gradient-brand">{t.ceo.role}</span>
             </h3>
           </motion.div>
-          <motion.div style={{ y: bottomY }} className="text-center">
+          <motion.div style={{ y: bottomY }} className="text-center will-change-transform">
             <h3 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter text-foreground leading-none">
               {t.ceo.name}
             </h3>
           </motion.div>
         </motion.div>
 
-        <motion.div style={{ opacity: contentOpacity, y: contentY }} className="relative z-0 flex flex-col md:flex-row items-center gap-10 md:gap-16 px-6 max-w-6xl mx-auto">
+        {/* Content revealed behind */}
+        <motion.div style={{ opacity: contentOpacity, y: contentY }} className="relative z-0 flex flex-col md:flex-row items-center gap-10 md:gap-16 px-6 max-w-6xl mx-auto will-change-[opacity,transform]">
           <div className="relative w-48 h-48 sm:w-56 sm:h-56 flex-shrink-0">
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-accent opacity-30 blur-xl" />
             <img src={ceoDalton} alt={`${t.ceo.name} - ${t.ceo.role}`} className="relative w-full h-full rounded-full object-cover border-2 border-border" loading="lazy" />
