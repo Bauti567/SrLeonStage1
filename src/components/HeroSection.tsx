@@ -60,9 +60,9 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Bottom: Giant agency name with SplitText */}
+      {/* Bottom: Giant agency name - responsive */}
       <div className="w-full px-4 pb-6 overflow-hidden">
-        <h1 className="text-[12vw] md:text-[11vw] lg:text-[10vw] font-black uppercase tracking-tighter text-foreground leading-[0.85] whitespace-nowrap text-center flex items-center justify-center">
+        <h1 className="text-[15vw] sm:text-[12vw] md:text-[11vw] lg:text-[10vw] font-black uppercase tracking-tighter text-foreground leading-[0.85] text-center flex flex-wrap items-center justify-center gap-x-[0.15em]">
           <SplitText
             text="SR"
             delay={40}

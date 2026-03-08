@@ -49,7 +49,6 @@ const AboutSection = () => {
           </p>
 
           <div className="relative max-w-5xl mx-auto">
-            {/* Badge overlapping on top of text */}
             <motion.span
               initial={{ rotate: 0, opacity: 0 }}
               animate={isInView ? { rotate: -12, opacity: 1 } : {}}
@@ -75,36 +74,41 @@ const AboutSection = () => {
           </p>
         </motion.div>
 
-        {/* About Me - CEO */}
+        {/* About Me - CEO — layout like reference image */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mb-20 flex flex-col items-center text-center"
+          className="mb-20 flex flex-col md:flex-row items-center gap-10 md:gap-16"
         >
-          <div className="relative w-48 h-48 sm:w-56 sm:h-56 mb-6">
+          {/* Left: circular photo */}
+          <div className="relative w-48 h-48 sm:w-56 sm:h-56 flex-shrink-0">
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-accent opacity-30 blur-xl" />
             <img
               src={ceoDalton}
-              alt="Dalton Chisica - CEO"
+              alt="Santiago León - CEO"
               className="relative w-full h-full rounded-full object-cover border-2 border-border"
+              loading="lazy"
             />
           </div>
-          <h3 className="text-2xl sm:text-3xl font-black text-foreground uppercase tracking-tight">
-            Dalton Chisica
-          </h3>
-          <span className="text-sm font-bold uppercase tracking-[0.2em] text-gradient-brand mt-1">
-            CEO
-          </span>
-          <div className="mt-4 space-y-1 text-sm text-muted-foreground max-w-sm">
-            <p>🎬 Creación de contenido | Estrategia digital 🧠</p>
-            <p>🧑‍💻 + 1000M de reproducciones orgánicas 📲</p>
-            <p>Prof. Cine y Tv 🎥 | Esp. En Fotografía 📸</p>
+
+          {/* Right: name + bio */}
+          <div className="text-center md:text-left">
+            <h3 className="text-4xl sm:text-5xl md:text-6xl font-black text-foreground uppercase tracking-tight leading-[0.95]">
+              Santiago
+              <br />
+              León
+            </h3>
+            <div className="mt-4 space-y-2 text-sm text-muted-foreground max-w-md">
+              <p>🎬 Creación de contenido | Estrategia digital 🧠</p>
+              <p>🧑‍💻 + 1000M de reproducciones orgánicas 📲</p>
+              <p>Prof. Cine y Tv 🎥 | Esp. En Fotografía 📸</p>
+            </div>
           </div>
         </motion.div>
 
         {/* Services grid */}
-        <div id="services" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
             <motion.div
               key={service.title}

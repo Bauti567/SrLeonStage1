@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import logoNegro from "@/assets/logo_negro.png";
@@ -14,17 +14,38 @@ const navItems = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleClick = (href: string) => {
+  // Close menu on outside click
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(e.target as Node) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(e.target as Node)
+      ) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [menuOpen]);
+
+  const handleClick = useCallback((href: string) => {
     setMenuOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-  };
+    setTimeout(() => {
+      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  }, []);
 
   return (
     <motion.nav
@@ -36,7 +57,6 @@ const Navbar = () => {
       }`}
     >
       <div className="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
-        {/* Left: Logo + Menu */}
         <div className="flex items-center gap-6">
           <img
             src={logoNegro}
@@ -44,6 +64,7 @@ const Navbar = () => {
             className="w-8 h-8 object-contain dark:invert"
           />
           <button
+            ref={buttonRef}
             onClick={() => setMenuOpen(!menuOpen)}
             className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground hover:text-muted-foreground transition-colors"
           >
@@ -51,7 +72,6 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Right: CTA */}
         <div className="flex items-center gap-4">
           <button
             onClick={() => handleClick("#contact")}
@@ -65,10 +85,10 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Overlay menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
+            ref={menuRef}
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -79,10 +99,10 @@ const Navbar = () => {
               <ul className="flex flex-col gap-6">
                 {navItems.map((item, i) => (
                   <motion.li
-                    key={item.href}
+                    key={item.label + item.href}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1 }}
+                    transition={{ delay: i * 0.08 }}
                   >
                     <button
                       onClick={() => handleClick(item.href)}
