@@ -1,6 +1,5 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { ArrowUpRight } from "lucide-react";
 import { toast } from "sonner";
 
 const budgetOptions = [
@@ -18,6 +17,46 @@ const inquiryOptions = [
   "Social Media",
   "Otro",
 ];
+
+interface WaveInputProps {
+  label: string;
+  value: string;
+  onChange: (val: string) => void;
+  type?: string;
+  required?: boolean;
+}
+
+const WaveInput = ({ label, value, onChange, type = "text", required = false }: WaveInputProps) => {
+  return (
+    <div className="wave-group w-full">
+      <input
+        type={type}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        required={required}
+        className="wave-input w-full border-b border-border bg-transparent py-3 text-foreground text-sm focus:outline-none"
+      />
+      <label className="wave-label">
+        {(label).split("").map((char, i) => (
+          <span
+            key={i}
+            className="label-char"
+            style={{ "--index": i } as React.CSSProperties}
+          >
+            {char === " " ? "\u00A0" : char}
+          </span>
+        ))}
+      </label>
+      <span className="wave-bar" />
+    </div>
+  );
+};
+
+const ArrowIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-5 h-5">
+    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z" />
+  </svg>
+);
 
 const ContactSection = () => {
   const ref = useRef(null);
@@ -38,9 +77,6 @@ const ContactSection = () => {
     setForm({ name: "", email: "", phone: "", company: "", inquiry: "", budget: "", details: "" });
   };
 
-  const inputClass =
-    "w-full border-b border-border bg-transparent py-3 text-foreground placeholder:text-muted-foreground focus:border-foreground focus:outline-none transition-colors text-sm";
-
   return (
     <section id="contact" className="py-28 px-6" ref={ref}>
       <div className="mx-auto max-w-6xl">
@@ -54,7 +90,7 @@ const ContactSection = () => {
           >
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-foreground leading-[1.05] uppercase tracking-tight">
               Hablemos de tu{" "}
-              <span className="text-gradient-green">proyecto</span>.
+              <span className="text-gradient-brand">proyecto</span>.
             </h2>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">
               Cuéntanos qué te frena, lo convertiremos en tu próxima ventaja competitiva.
@@ -67,67 +103,37 @@ const ContactSection = () => {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
             onSubmit={handleSubmit}
-            className="space-y-6"
+            className="space-y-8"
           >
-            {/* Full name */}
-            <input
-              type="text"
-              placeholder="Nombre completo*"
-              required
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className={inputClass}
-            />
+            <WaveInput label="Nombre completo *" value={form.name} onChange={(v) => setForm({ ...form, name: v })} required />
 
-            {/* Email + Phone */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <input
-                type="email"
-                placeholder="Email*"
-                required
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className={inputClass}
-              />
-              <input
-                type="tel"
-                placeholder="Teléfono"
-                value={form.phone}
-                onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                className={inputClass}
-              />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <WaveInput label="Email *" value={form.email} onChange={(v) => setForm({ ...form, email: v })} type="email" required />
+              <WaveInput label="Teléfono" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} type="tel" />
             </div>
 
-            {/* Company + Inquiry */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <input
-                type="text"
-                placeholder="Empresa"
-                value={form.company}
-                onChange={(e) => setForm({ ...form, company: e.target.value })}
-                className={inputClass}
-              />
-              <select
-                value={form.inquiry}
-                onChange={(e) => setForm({ ...form, inquiry: e.target.value })}
-                required
-                className={`${inputClass} appearance-none cursor-pointer`}
-              >
-                <option value="" disabled>
-                  Motivo de consulta*
-                </option>
-                {inquiryOptions.map((opt) => (
-                  <option key={opt} value={opt}>
-                    {opt}
-                  </option>
-                ))}
-              </select>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <WaveInput label="Empresa" value={form.company} onChange={(v) => setForm({ ...form, company: v })} />
+              <div className="wave-group w-full">
+                <select
+                  value={form.inquiry}
+                  onChange={(e) => setForm({ ...form, inquiry: e.target.value })}
+                  required
+                  className="wave-input w-full border-b border-border bg-transparent py-3 text-foreground text-sm focus:outline-none appearance-none cursor-pointer"
+                >
+                  <option value="" disabled>Motivo de consulta *</option>
+                  {inquiryOptions.map((opt) => (
+                    <option key={opt} value={opt}>{opt}</option>
+                  ))}
+                </select>
+                <span className="wave-bar" />
+              </div>
             </div>
 
             {/* Budget */}
             <div>
               <p className="text-sm font-semibold text-foreground mb-3">
-                Presupuesto del proyecto*
+                Presupuesto del proyecto *
               </p>
               <div className="flex flex-wrap gap-2">
                 {budgetOptions.map((opt) => (
@@ -147,23 +153,31 @@ const ContactSection = () => {
               </div>
             </div>
 
-            {/* Project details */}
-            <textarea
-              placeholder="Detalles del proyecto*"
-              rows={4}
-              required
-              value={form.details}
-              onChange={(e) => setForm({ ...form, details: e.target.value })}
-              className={`${inputClass} resize-none`}
-            />
+            {/* Details */}
+            <div className="wave-group w-full">
+              <textarea
+                value={form.details}
+                onChange={(e) => setForm({ ...form, details: e.target.value })}
+                required
+                rows={4}
+                className="wave-input w-full border-b border-border bg-transparent py-3 text-foreground text-sm focus:outline-none resize-none"
+              />
+              <label className="wave-label">
+                {"Detalles del proyecto *".split("").map((char, i) => (
+                  <span key={i} className="label-char" style={{ "--index": i } as React.CSSProperties}>
+                    {char === " " ? "\u00A0" : char}
+                  </span>
+                ))}
+              </label>
+              <span className="wave-bar" />
+            </div>
 
-            {/* Submit */}
-            <button
-              type="submit"
-              className="group inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3.5 rounded-lg font-bold uppercase tracking-wide text-sm hover:opacity-90 transition-opacity"
-            >
-              Conectemos
-              <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            {/* Animated Submit Button */}
+            <button type="submit" className="animated-btn">
+              <ArrowIcon />
+              <span className="animated-btn-text">Conectemos</span>
+              <span className="animated-btn-circle" />
+              <ArrowIcon />
             </button>
           </motion.form>
         </div>
