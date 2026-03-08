@@ -1,5 +1,5 @@
 import { useScroll, useMotionValueEvent } from "framer-motion";
-import { useRef, useState, memo, useCallback } from "react";
+import { useRef, useState, memo } from "react";
 import { ArrowRight } from "lucide-react";
 import { useI18n } from "@/hooks/use-i18n";
 
