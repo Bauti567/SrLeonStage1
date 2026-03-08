@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Instagram } from "lucide-react";
 
@@ -12,22 +12,8 @@ const igPosts = [
 ];
 
 const InstagramSection = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
   const gridRef = useRef(null);
   const gridInView = useInView(gridRef, { once: true, margin: "-80px" });
-
-  // Section 1 (title) transforms — shrinks & rotates away
-  const scale1 = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
-  const rotate1 = useTransform(scrollYProgress, [0, 1], [0, -5]);
-
-  // Section 2 (grid) transforms — grows & straightens in
-  const scale2 = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
-  const rotate2 = useTransform(scrollYProgress, [0, 1], [5, 0]);
 
   return (
     <section id="instagram" className="py-28 px-6">
@@ -47,7 +33,7 @@ const InstagramSection = () => {
         </div>
 
         {/* Grid */}
-        <div ref={gridRef}>
+        <div ref={gridRef} className="flex justify-center">
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-4xl w-full">
             {igPosts.map((src, i) => (
               <motion.a
@@ -72,7 +58,7 @@ const InstagramSection = () => {
               </motion.a>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
