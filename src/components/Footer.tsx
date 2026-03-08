@@ -1,4 +1,5 @@
 import logoNegro from "@/assets/logo_negro.png";
+import developerIcon from "@/assets/developer-icon.svg";
 
 const Footer = () => (
   <footer className="border-t border-border py-16 px-6">
