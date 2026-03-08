@@ -1,5 +1,5 @@
 import { useScroll, useMotionValueEvent } from "framer-motion";
-import { useRef, useState, memo, useCallback } from "react";
+import { useRef, useState, memo } from "react";
 import { ArrowRight } from "lucide-react";
 import { useI18n } from "@/hooks/use-i18n";
 
@@ -69,10 +69,10 @@ const ServicesSection = () => {
 
   const itemCount = t.services.items.length;
 
-  useMotionValueEvent(scrollYProgress, "change", useCallback((latest: number) => {
+  useMotionValueEvent(scrollYProgress, "change", (latest: number) => {
     const index = Math.min(Math.floor(latest * itemCount), itemCount - 1);
     setActiveIndex((prev) => prev !== index ? index : prev);
-  }, [itemCount]));
+  });
 
   return (
     <section id="services" ref={containerRef} style={{ height: `${(itemCount + 1) * 100}vh` }}>
