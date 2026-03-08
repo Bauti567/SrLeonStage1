@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState, useEffect } from "react";
 import logoNegro from "@/assets/logo_negro.png";
 import SplitText from "./SplitText";
 
@@ -18,9 +18,14 @@ const HeroSection = () => {
   const month = String(now.getMonth() + 1).padStart(2, "0");
   const day = String(now.getDate()).padStart(2, "0");
 
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+
   const handleScroll = (href: string) => {
     document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
   };
+
+  if (!mounted) return <section id="hero" className="relative min-h-screen bg-background" />;
 
   return (
     <section

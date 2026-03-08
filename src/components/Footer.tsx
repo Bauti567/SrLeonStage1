@@ -1,4 +1,5 @@
 import logoNegro from "@/assets/logo_negro.png";
+import developerIcon from "@/assets/developer-icon.svg";
 
 const Footer = () => (
   <footer className="border-t border-border py-16 px-6">
@@ -46,6 +47,10 @@ const Footer = () => (
             <br />
             Todos los derechos reservados
           </p>
+          <div className="flex items-center gap-2 mt-3">
+            <span className="text-xs text-muted-foreground">Diseñado y desarrollado por</span>
+            <img src={developerIcon} alt="Developer" className="w-5 h-5 invert dark:invert-0" />
+          </div>
         </div>
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground mb-3">

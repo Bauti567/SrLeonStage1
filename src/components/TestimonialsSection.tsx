@@ -117,7 +117,7 @@ const TestimonialsSection = () => {
           {/* Center title */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
             <h3 className="text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-tight text-foreground text-center leading-[0.95]">
-              Stories from<br />our happy clients
+              Creamos contenido<br />que transforma marcas
             </h3>
           </div>
 
