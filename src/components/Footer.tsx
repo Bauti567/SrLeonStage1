@@ -47,10 +47,15 @@ const Footer = () => (
             <br />
             Todos los derechos reservados
           </p>
-          <div className="flex items-center gap-2 mt-3">
+          <a
+            href="https://www.instagram.com/bautii.__8/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 mt-3 hover:opacity-80 transition-opacity"
+          >
             <span className="text-xs text-muted-foreground">Diseñado y desarrollado por</span>
-            <img src={developerIcon} alt="Developer" className="w-6 h-6 brightness-0 invert" />
-          </div>
+            <img src={developerIcon} alt="Developer" className="w-10 h-10 brightness-0 invert" />
+          </a>
         </div>
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground mb-3">
