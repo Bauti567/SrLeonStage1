@@ -1,44 +1,25 @@
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { useRef, useState, memo } from "react";
 import { ArrowRight } from "lucide-react";
+import { useI18n } from "@/hooks/use-i18n";
 
-const services = [
-  {
-    id: "01",
-    tag: "CONTENIDO",
-    title: "CREACIÓN DE\nCONTENIDO",
-    description:
-      "Producimos contenido audiovisual de alto impacto que conecta con tu audiencia. Videos, fotografía y piezas creativas diseñadas para destacar en todas las plataformas digitales.",
-    image:
-      "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&h=600&fit=crop&auto=format&q=60",
-  },
-  {
-    id: "02",
-    tag: "ESTRATEGIA",
-    title: "ESTRATEGIA\nDIGITAL",
-    description:
-      "Diseñamos planes estratégicos basados en datos para maximizar tu presencia digital. Analizamos, planificamos y ejecutamos campañas que generan resultados medibles.",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&auto=format&q=60",
-  },
-  {
-    id: "03",
-    tag: "BRANDING",
-    title: "BRANDING",
-    description:
-      "Construimos identidades de marca memorables. Desde el logo hasta la guía de estilo completa, creamos la personalidad visual que hace única a tu marca.",
-    image:
-      "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&h=600&fit=crop&auto=format&q=60",
-  },
+const serviceImages = [
+  "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&h=600&fit=crop&auto=format&q=60",
+  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&auto=format&q=60",
+  "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&h=600&fit=crop&auto=format&q=60",
 ];
 
-const ServiceCard = memo(({ service, isActive }: { service: typeof services[0]; isActive: boolean }) => (
+interface ServiceItem {
+  id: string;
+  tag: string;
+  title: string;
+  description: string;
+}
+
+const ServiceCard = memo(({ service, image, isActive, learnMore }: { service: ServiceItem; image: string; isActive: boolean; learnMore: string }) => (
   <motion.div
     className="absolute inset-0 flex items-center"
-    animate={{
-      opacity: isActive ? 1 : 0,
-      y: isActive ? 0 : 40,
-    }}
+    animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 40 }}
     transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
     style={{ pointerEvents: isActive ? "auto" : "none" }}
   >
@@ -52,30 +33,20 @@ const ServiceCard = memo(({ service, isActive }: { service: typeof services[0]; 
             {service.title}
           </h3>
         </div>
-        <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">
-          {service.description}
-        </p>
+        <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">{service.description}</p>
         <button
-          onClick={() =>
-            document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })
-          }
+          onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
           className="group inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-foreground hover:text-primary transition-colors"
         >
-          Saber más
+          {learnMore}
           <span className="inline-flex items-center justify-center rounded-full border border-foreground w-8 h-8 group-hover:bg-foreground group-hover:text-background transition-all duration-300">
             <ArrowRight className="h-4 w-4" />
           </span>
         </button>
       </div>
-
       <div className="md:col-span-7">
         <div className="relative overflow-hidden rounded-lg aspect-[4/3]">
-          <img
-            src={service.image}
-            alt={service.title.replace('\n', ' ')}
-            className="w-full h-full object-cover"
-            loading="lazy"
-          />
+          <img src={image} alt={service.title.replace('\n', ' ')} className="w-full h-full object-cover" loading="lazy" />
         </div>
       </div>
     </div>
@@ -85,6 +56,7 @@ const ServiceCard = memo(({ service, isActive }: { service: typeof services[0]; 
 ServiceCard.displayName = "ServiceCard";
 
 const ServicesSection = () => {
+  const { t } = useI18n();
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -94,43 +66,28 @@ const ServicesSection = () => {
   });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const index = Math.min(
-      Math.floor(latest * services.length),
-      services.length - 1
-    );
+    const index = Math.min(Math.floor(latest * t.services.items.length), t.services.items.length - 1);
     if (index !== activeIndex) setActiveIndex(index);
   });
 
   return (
-    <section id="services" ref={containerRef} style={{ height: `${(services.length + 1) * 100}vh` }}>
+    <section id="services" ref={containerRef} style={{ height: `${(t.services.items.length + 1) * 100}vh` }}>
       <div className="sticky top-0 h-screen overflow-hidden bg-background">
         <div className="absolute top-8 left-8 z-10">
-          <p className="text-[10px] uppercase tracking-[0.3em] font-semibold text-muted-foreground">
-            Servicios — SR LEON
-          </p>
+          <p className="text-[10px] uppercase tracking-[0.3em] font-semibold text-muted-foreground">{t.services.label}</p>
         </div>
-
         <div className="absolute top-8 right-8 z-10">
           <span className="text-xs font-mono text-muted-foreground">
-            {String(activeIndex + 1).padStart(2, "0")} / {String(services.length).padStart(2, "0")}
+            {String(activeIndex + 1).padStart(2, "0")} / {String(t.services.items.length).padStart(2, "0")}
           </span>
         </div>
-
         <div className="relative h-full flex flex-col justify-end pb-12 px-6 md:px-12">
-          {services.map((service, i) => (
-            <ServiceCard key={service.id} service={service} isActive={activeIndex === i} />
+          {t.services.items.map((service, i) => (
+            <ServiceCard key={service.id} service={service} image={serviceImages[i]} isActive={activeIndex === i} learnMore={t.services.learnMore} />
           ))}
-
           <div className="relative z-10 flex items-center gap-3 mx-auto">
-            {services.map((_, i) => (
-              <div
-                key={i}
-                className={`h-1 rounded-full transition-all duration-500 ${
-                  activeIndex === i
-                    ? "w-8 bg-foreground"
-                    : "w-2 bg-muted-foreground/30"
-                }`}
-              />
+            {t.services.items.map((_, i) => (
+              <div key={i} className={`h-1 rounded-full transition-all duration-500 ${activeIndex === i ? "w-8 bg-foreground" : "w-2 bg-muted-foreground/30"}`} />
             ))}
           </div>
         </div>

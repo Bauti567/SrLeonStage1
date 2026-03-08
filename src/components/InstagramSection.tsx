@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Instagram } from "lucide-react";
+import { useI18n } from "@/hooks/use-i18n";
 
 const igPosts = [
   "https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=400&h=400&fit=crop&q=60",
@@ -12,46 +13,29 @@ const igPosts = [
 ];
 
 const InstagramSection = () => {
+  const { t } = useI18n();
   const gridRef = useRef(null);
   const gridInView = useInView(gridRef, { once: true, margin: "-80px" });
 
   return (
     <section id="instagram" className="py-28 px-6">
       <div className="max-w-6xl mx-auto">
-        {/* Title */}
         <div className="flex flex-col items-center gap-4 mb-16">
           <div className="inline-flex items-center gap-3">
             <Instagram className="w-6 h-6 text-foreground" />
-            <span className="text-sm font-mono uppercase tracking-widest text-muted-foreground">
-              @srleon.agency
-            </span>
+            <span className="text-sm font-mono uppercase tracking-widest text-muted-foreground">{t.instagram.handle}</span>
           </div>
           <h2 className="text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-tight leading-none text-foreground text-center">
-            Síguenos en<br />
-            <span className="text-gradient-brand">Instagram</span>
+            {t.instagram.title1}<br />
+            <span className="text-gradient-brand">{t.instagram.title2}</span>
           </h2>
         </div>
 
-        {/* Grid */}
         <div ref={gridRef} className="flex justify-center">
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-4xl w-full">
             {igPosts.map((src, i) => (
-              <motion.a
-                key={i}
-                href="https://instagram.com/srleon.agency"
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={gridInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.4, delay: 0.08 * i }}
-                className="group relative aspect-square overflow-hidden rounded-lg"
-              >
-                <img
-                  src={src}
-                  alt={`Instagram post ${i + 1}`}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  loading="lazy"
-                />
+              <motion.a key={i} href="https://instagram.com/srleon.agency" target="_blank" rel="noopener noreferrer" initial={{ opacity: 0, scale: 0.9 }} animate={gridInView ? { opacity: 1, scale: 1 } : {}} transition={{ duration: 0.4, delay: 0.08 * i }} className="group relative aspect-square overflow-hidden rounded-lg">
+                <img src={src} alt={`Instagram post ${i + 1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
                 <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/40 transition-colors duration-300 flex items-center justify-center">
                   <Instagram className="w-8 h-8 text-background opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
