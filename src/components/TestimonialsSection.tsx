@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const testimonials = [
@@ -36,43 +36,77 @@ const testimonials = [
   },
 ];
 
-const decorImages = [
-  { src: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=200&h=200&fit=crop&q=60", pos: "top-[5%] left-[30%]", rotation: "rotate-6", size: "w-28 h-28 sm:w-36 sm:h-36" },
-  { src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=200&h=200&fit=crop&q=60", pos: "top-[8%] right-[18%]", rotation: "-rotate-3", size: "w-24 h-24 sm:w-32 sm:h-32" },
-  { src: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=200&h=200&fit=crop&q=60", pos: "bottom-[15%] left-[38%]", rotation: "-rotate-6", size: "w-28 h-28 sm:w-36 sm:h-36" },
-];
-
-const TestimonialsSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+const ScrollChar = ({
+  char,
+  index,
+  centerIndex,
+  scrollYProgress,
+}: {
+  char: string;
+  index: number;
+  centerIndex: number;
+  scrollYProgress: any;
+}) => {
+  const isSpace = char === " ";
+  const dist = index - centerIndex;
+  const x = useTransform(scrollYProgress, [0, 0.4], [dist * 45, 0]);
+  const rotateX = useTransform(scrollYProgress, [0, 0.4], [dist * 40, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.25], [0.3, 1]);
 
   return (
-    <section id="testimonials" className="py-28 px-6 overflow-hidden" ref={ref}>
-      <div className="mx-auto max-w-7xl relative">
-        {/* Center title */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-20 relative z-10"
-        >
-          <h2 className="text-4xl sm:text-5xl md:text-7xl font-black text-foreground uppercase tracking-tight leading-[1]">
-            Historias de
-            <br />
-            nuestros clientes
-          </h2>
-          <p className="text-muted-foreground text-xs uppercase tracking-[0.2em] mt-4">
-            Descubre cómo hemos ayudado a marcas a crecer con estrategia, diseño e innovación.
-          </p>
-        </motion.div>
+    <motion.span
+      className={`inline-block text-foreground ${isSpace ? "w-3 sm:w-5" : ""}`}
+      style={{ x, rotateX, opacity }}
+    >
+      {char}
+    </motion.span>
+  );
+};
 
-        {/* Bento grid of testimonials */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+const TestimonialsSection = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const cardsRef = useRef(null);
+  const cardsInView = useInView(cardsRef, { once: true, margin: "-80px" });
+
+  const title = "Historias de nuestros clientes";
+  const chars = title.split("");
+  const center = Math.floor(chars.length / 2);
+
+  return (
+    <section id="testimonials" ref={sectionRef} className="relative">
+      {/* Scroll-animated title */}
+      <div className="h-[150vh] relative">
+        <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden px-6">
+          <h2 className="flex flex-wrap justify-center text-3xl sm:text-5xl md:text-7xl font-black uppercase tracking-tight leading-none">
+            {chars.map((char, i) => (
+              <ScrollChar
+                key={i}
+                char={char}
+                index={i}
+                centerIndex={center}
+                scrollYProgress={scrollYProgress}
+              />
+            ))}
+          </h2>
+        </div>
+      </div>
+
+      {/* Testimonial cards */}
+      <div ref={cardsRef} className="px-6 pb-28 -mt-[30vh]">
+        <p className="text-muted-foreground text-xs uppercase tracking-[0.2em] text-center mb-12">
+          Descubre cómo hemos ayudado a marcas a crecer con estrategia, diseño e innovación.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto relative z-10">
           {testimonials.map((t, i) => (
             <motion.div
               key={t.name}
               initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              animate={cardsInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.15 * i }}
               className={`${t.color} ${t.rotation} rounded-2xl p-6 flex flex-col justify-between min-h-[220px] hover:rotate-0 transition-transform duration-300`}
             >
@@ -93,16 +127,6 @@ const TestimonialsSection = () => {
             </motion.div>
           ))}
         </div>
-
-        {/* Decorative floating images - hidden on mobile */}
-        {decorImages.map((img, i) => (
-          <div
-            key={i}
-            className={`absolute ${img.pos} ${img.rotation} ${img.size} rounded-xl overflow-hidden shadow-lg hidden lg:block opacity-60 pointer-events-none`}
-          >
-            <img src={img.src} alt="" className="w-full h-full object-cover" loading="lazy" />
-          </div>
-        ))}
       </div>
     </section>
   );
