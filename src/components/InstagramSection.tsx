@@ -30,13 +30,10 @@ const InstagramSection = () => {
   const rotate2 = useTransform(scrollYProgress, [0, 1], [5, 0]);
 
   return (
-    <section id="instagram" ref={containerRef} className="relative h-[200vh]">
-      <div className="sticky top-0 h-screen overflow-hidden">
-        {/* Section 1 — Title with scale/rotate out */}
-        <motion.div
-          style={{ scale: scale1, rotate: rotate1 }}
-          className="absolute inset-0 flex flex-col items-center justify-center px-6 gap-4 z-10 origin-center"
-        >
+    <section id="instagram" className="py-28 px-6">
+      <div className="max-w-6xl mx-auto">
+        {/* Title */}
+        <div className="flex flex-col items-center gap-4 mb-16">
           <div className="inline-flex items-center gap-3">
             <Instagram className="w-6 h-6 text-foreground" />
             <span className="text-sm font-mono uppercase tracking-widest text-muted-foreground">
@@ -47,14 +44,10 @@ const InstagramSection = () => {
             Síguenos en<br />
             <span className="text-gradient-brand">Instagram</span>
           </h2>
-        </motion.div>
+        </div>
 
-        {/* Section 2 — Grid with scale/rotate in */}
-        <motion.div
-          ref={gridRef}
-          style={{ scale: scale2, rotate: rotate2 }}
-          className="absolute inset-0 flex items-center justify-center px-6 z-20 origin-center"
-        >
+        {/* Grid */}
+        <div ref={gridRef}>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-4xl w-full">
             {igPosts.map((src, i) => (
               <motion.a
