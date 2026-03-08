@@ -1,5 +1,5 @@
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
-import { useRef, useState, memo } from "react";
+import { useScroll, useMotionValueEvent } from "framer-motion";
+import { useRef, useState, memo, useCallback } from "react";
 import { ArrowRight } from "lucide-react";
 import { useI18n } from "@/hooks/use-i18n";
 
@@ -17,11 +17,13 @@ interface ServiceItem {
 }
 
 const ServiceCard = memo(({ service, image, isActive, learnMore }: { service: ServiceItem; image: string; isActive: boolean; learnMore: string }) => (
-  <motion.div
-    className="absolute inset-0 flex items-center"
-    animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 40 }}
-    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-    style={{ pointerEvents: isActive ? "auto" : "none" }}
+  <div
+    className="absolute inset-0 flex items-center transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[opacity,transform]"
+    style={{
+      opacity: isActive ? 1 : 0,
+      transform: isActive ? "translate3d(0,0,0)" : "translate3d(0,40px,0)",
+      pointerEvents: isActive ? "auto" : "none",
+    }}
   >
     <div className="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-center px-6 md:px-12">
       <div className="md:col-span-5 space-y-6">
@@ -50,7 +52,7 @@ const ServiceCard = memo(({ service, image, isActive, learnMore }: { service: Se
         </div>
       </div>
     </div>
-  </motion.div>
+  </div>
 ));
 
 ServiceCard.displayName = "ServiceCard";
@@ -65,20 +67,22 @@ const ServicesSection = () => {
     offset: ["start start", "end end"],
   });
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const index = Math.min(Math.floor(latest * t.services.items.length), t.services.items.length - 1);
-    if (index !== activeIndex) setActiveIndex(index);
-  });
+  const itemCount = t.services.items.length;
+
+  useMotionValueEvent(scrollYProgress, "change", useCallback((latest: number) => {
+    const index = Math.min(Math.floor(latest * itemCount), itemCount - 1);
+    setActiveIndex((prev) => prev !== index ? index : prev);
+  }, [itemCount]));
 
   return (
-    <section id="services" ref={containerRef} style={{ height: `${(t.services.items.length + 1) * 100}vh` }}>
+    <section id="services" ref={containerRef} style={{ height: `${(itemCount + 1) * 100}vh` }}>
       <div className="sticky top-0 h-screen overflow-hidden bg-background">
         <div className="absolute top-8 left-8 z-10">
           <p className="text-[10px] uppercase tracking-[0.3em] font-semibold text-muted-foreground">{t.services.label}</p>
         </div>
         <div className="absolute top-8 right-8 z-10">
           <span className="text-xs font-mono text-muted-foreground">
-            {String(activeIndex + 1).padStart(2, "0")} / {String(t.services.items.length).padStart(2, "0")}
+            {String(activeIndex + 1).padStart(2, "0")} / {String(itemCount).padStart(2, "0")}
           </span>
         </div>
         <div className="relative h-full flex flex-col justify-end pb-12 px-6 md:px-12">
