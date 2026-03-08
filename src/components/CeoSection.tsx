@@ -10,16 +10,16 @@ const CeoSection = () => {
     offset: ["start end", "end start"],
   });
 
-  // Split reveal: top half moves up, bottom half moves down
-  const topY = useTransform(scrollYProgress, [0.15, 0.45], ["0%", "-30%"]);
-  const bottomY = useTransform(scrollYProgress, [0.15, 0.45], ["0%", "30%"]);
-  const clipTop = useTransform(scrollYProgress, [0.15, 0.45], [50, 0]);
-  const clipBottom = useTransform(scrollYProgress, [0.15, 0.45], [50, 100]);
-  const contentOpacity = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
-  const contentY = useTransform(scrollYProgress, [0.2, 0.4], [60, 0]);
+  // Slower split reveal — wider scroll range so text stays visible longer
+  const topY = useTransform(scrollYProgress, [0.25, 0.55], ["0%", "-40%"]);
+  const bottomY = useTransform(scrollYProgress, [0.25, 0.55], ["0%", "40%"]);
+  const clipTop = useTransform(scrollYProgress, [0.25, 0.55], [50, 0]);
+  const clipBottom = useTransform(scrollYProgress, [0.25, 0.55], [50, 100]);
+  const contentOpacity = useTransform(scrollYProgress, [0.35, 0.55], [0, 1]);
+  const contentY = useTransform(scrollYProgress, [0.35, 0.55], [60, 0]);
 
   return (
-    <section ref={containerRef} className="relative min-h-[200vh]">
+    <section ref={containerRef} className="relative min-h-[250vh]">
       <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
         {/* Split title overlay */}
         <motion.div
@@ -34,12 +34,12 @@ const CeoSection = () => {
         >
           <motion.div style={{ y: topY }} className="text-center">
             <h3 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter text-foreground leading-none">
-              <span className="text-gradient-brand">CEO</span> Santiago
+              <span className="text-gradient-brand">CEO</span>
             </h3>
           </motion.div>
           <motion.div style={{ y: bottomY }} className="text-center">
             <h3 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter text-foreground leading-none">
-              León
+              Santiago León
             </h3>
           </motion.div>
         </motion.div>
@@ -63,9 +63,9 @@ const CeoSection = () => {
           {/* Info */}
           <div className="text-center md:text-left">
             <h3 className="text-4xl sm:text-5xl md:text-6xl font-black text-foreground uppercase tracking-tight leading-[0.95]">
-              <span className="text-gradient-brand">CEO</span> Santiago
+              <span className="text-gradient-brand">CEO</span>
               <br />
-              León
+              Santiago León
             </h3>
             <div className="mt-4 space-y-2 text-sm text-muted-foreground max-w-md">
               <p>🎬 Creación de contenido | Estrategia digital 🧠</p>
