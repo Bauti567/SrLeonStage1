@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { lazy, Suspense, useState, useEffect } from "react";
+import { lazy, Suspense, useState, useEffect, useMemo } from "react";
 import logoNegro from "@/assets/logo_negro.png";
 import SplitText from "./SplitText";
 
