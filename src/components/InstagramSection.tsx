@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Instagram } from "lucide-react";
 import { useI18n } from "@/hooks/use-i18n";
@@ -19,7 +19,7 @@ const InstagramSection = () => {
 
   return (
     <section id="instagram" className="py-28 px-6">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl 3xl:max-w-7xl mx-auto">
         <div className="flex flex-col items-center gap-4 mb-16">
           <div className="inline-flex items-center gap-3">
             <Instagram className="w-6 h-6 text-foreground" />
@@ -32,14 +32,25 @@ const InstagramSection = () => {
         </div>
 
         <div ref={gridRef} className="flex justify-center">
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-4xl w-full">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-4xl 3xl:max-w-5xl w-full">
             {igPosts.map((src, i) => (
-              <motion.a key={i} href="https://instagram.com/srleon.agency" target="_blank" rel="noopener noreferrer" initial={{ opacity: 0, scale: 0.9 }} animate={gridInView ? { opacity: 1, scale: 1 } : {}} transition={{ duration: 0.4, delay: 0.08 * i }} className="group relative aspect-square overflow-hidden rounded-lg">
+              <a
+                key={i}
+                href="https://instagram.com/srleon.agency"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative aspect-square overflow-hidden rounded-lg transition-all duration-500"
+                style={{
+                  opacity: gridInView ? 1 : 0,
+                  transform: gridInView ? "scale(1)" : "scale(0.95)",
+                  transitionDelay: `${i * 60}ms`,
+                }}
+              >
                 <img src={src} alt={`Instagram post ${i + 1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
                 <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/40 transition-colors duration-300 flex items-center justify-center">
                   <Instagram className="w-8 h-8 text-background opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-              </motion.a>
+              </a>
             ))}
           </div>
         </div>

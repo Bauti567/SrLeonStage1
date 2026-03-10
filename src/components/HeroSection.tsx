@@ -68,7 +68,7 @@ const HeroSection = () => {
       </div>
 
       <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.5 }} className="border-t border-border">
-        <div className="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
+        <div className="mx-auto max-w-7xl 3xl:max-w-[1600px] px-6 py-5 flex items-center justify-between">
           {heroNavItems.map((item) => (
             <button key={item.label} onClick={() => handleScroll(item.href)} className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
               {item.label}

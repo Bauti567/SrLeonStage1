@@ -45,7 +45,7 @@ const ContactSection = () => {
 
   return (
     <section id="contact" className="py-28 px-6" ref={ref}>
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-6xl 3xl:max-w-7xl">
         <div className="grid md:grid-cols-2 gap-16 items-start">
           <motion.div initial={{ opacity: 0, x: -30 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6 }} className="space-y-6">
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-foreground leading-[1.05] uppercase tracking-tight">
