@@ -7,7 +7,7 @@ const Footer = () => {
 
   return (
     <footer className="border-t border-border py-16 px-6">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-6xl 3xl:max-w-7xl">
         <div className="flex flex-col md:flex-row items-start justify-between gap-8 mb-16">
           <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground max-w-xs leading-relaxed">
             {t.footer.description}
@@ -29,7 +29,7 @@ const Footer = () => {
         <div className="flex flex-col items-center gap-4 mb-16">
           <div className="flex items-center justify-center gap-4">
             <img src={logoNegro} alt="Señorleon Agencia" className="w-16 h-16 md:w-24 md:h-24 object-contain dark:invert" />
-            <h2 className="text-[12vw] md:text-[8vw] font-black uppercase tracking-tighter text-foreground leading-none">
+            <h2 className="text-[12vw] md:text-[8vw] 3xl:text-[6vw] font-black uppercase tracking-tighter text-foreground leading-none">
               SR<span className="text-gradient-brand">LEON</span>
             </h2>
           </div>
@@ -42,7 +42,7 @@ const Footer = () => {
             className="flex items-center gap-2 hover:opacity-80 transition-opacity"
           >
             <span className="text-xs text-muted-foreground">{t.footer.madeBy}</span>
-            <img src={developerIcon} alt="Developer" className="w-10 h-10 brightness-0 invert" />
+            <img src={developerIcon} alt="Developer" className="w-14 h-14 brightness-0 invert" />
           </a>
         </div>
 
