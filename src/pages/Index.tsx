@@ -8,7 +8,9 @@ const AboutSection = lazy(() => import("@/components/AboutSection"));
 const ServicesSection = lazy(() => import("@/components/ServicesSection"));
 const CeoSection = lazy(() => import("@/components/CeoSection"));
 const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
+const PortfolioSection = lazy(() => import("@/components/PortfolioSection"));
 const InstagramSection = lazy(() => import("@/components/InstagramSection"));
+const FaqSection = lazy(() => import("@/components/FaqSection"));
 const ContactSection = lazy(() => import("@/components/ContactSection"));
 const Footer = lazy(() => import("@/components/Footer"));
 
@@ -25,7 +27,9 @@ const Index = () => {
         <ServicesSection />
         <CeoSection />
         <TestimonialsSection />
+        <PortfolioSection />
         <InstagramSection />
+        <FaqSection />
         <div ref={contactRef}>
           <ContactSection />
         </div>
