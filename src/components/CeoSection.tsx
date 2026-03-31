@@ -25,9 +25,9 @@ const CeoSection = () => {
           <h3 className="text-4xl sm:text-5xl md:text-6xl font-black text-foreground uppercase tracking-tight leading-[0.95]">
             <span className="text-gradient-brand">{t.ceo.role}</span><br />{t.ceo.name}
           </h3>
-          <div className="mt-4 space-y-2 text-sm text-muted-foreground max-w-md">
-            {t.ceo.bio.map((line, i) => <p key={i}>{line}</p>)}
-          </div>
+          <p className="mt-4 text-lg sm:text-xl font-bold text-gradient-brand">{t.ceo.stats}</p>
+          <p className="mt-2 text-sm font-semibold text-foreground uppercase tracking-wide">{t.ceo.profession}</p>
+          <p className="mt-3 text-sm text-muted-foreground max-w-md leading-relaxed">{t.ceo.description}</p>
         </div>
       </div>
     </section>
