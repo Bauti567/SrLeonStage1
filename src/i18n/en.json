@@ -72,11 +72,9 @@
   "ceo": {
     "role": "CEO",
     "name": "Santiago León",
-    "bio": [
-      "🎬 Content Creation | Digital Strategy 🧠",
-      "🧑‍💻 + 1000M organic views 📲",
-      "Film & TV Prof. 🎥 | Photography Specialist 📸"
-    ]
+    "stats": "+10 Million organic views",
+    "profession": "Social Communication & Journalism Professional",
+    "description": "Creative professional focused on developing ideas and visual solutions that connect with people."
   },
   "testimonials": {
     "scrollTitle": "Stories from our clients",
