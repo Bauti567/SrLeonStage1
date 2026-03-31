@@ -103,10 +103,39 @@
       }
     ]
   },
+  "portfolio": {
+    "title": "Content we've created",
+    "subtitle": "Some of our most recent work"
+  },
   "instagram": {
     "handle": "@srleon.agency",
     "title1": "Follow us on",
     "title2": "Instagram"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "question": "Do you work with small brands or only large companies?",
+        "answer": "We work with companies of all sizes, from different categories. Focusing efforts on the current situation and the goals of each brand."
+      },
+      {
+        "question": "How long does the process take?",
+        "answer": "The process can take between 4 and 8 weeks, depending on the depth of each stage of the project."
+      },
+      {
+        "question": "Do you work with companies outside Colombia?",
+        "answer": "Yes, we work with companies from anywhere in the world."
+      },
+      {
+        "question": "Do you work per project or ongoing?",
+        "answer": "We can work in both models. Usually projects become ongoing brand support."
+      },
+      {
+        "question": "Do you deliver editable files for printing?",
+        "answer": "Yes, we deliver final artwork with all technical specifications for production."
+      }
+    ]
   },
   "contact": {
     "heading": "Let's talk about your",
