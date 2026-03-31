@@ -72,11 +72,9 @@
   "ceo": {
     "role": "CEO",
     "name": "Santiago León",
-    "bio": [
-      "🎬 Creación de contenido | Estrategia digital 🧠",
-      "🧑‍💻 + 1000M de reproducciones orgánicas 📲",
-      "Prof. Cine y Tv 🎥 | Esp. En Fotografía 📸"
-    ]
+    "stats": "+10 Millones de reproducciones orgánicas",
+    "profession": "Prof. Comunicación Social y Periodista",
+    "description": "Profesional creativo enfocado en el desarrollo de ideas y soluciones visuales que conectan con otras personas."
   },
   "testimonials": {
     "scrollTitle": "Historias de nuestros clientes",
@@ -105,10 +103,39 @@
       }
     ]
   },
+  "portfolio": {
+    "title": "Contenido que hemos creado",
+    "subtitle": "Algunos de nuestros trabajos más recientes"
+  },
   "instagram": {
     "handle": "@srleon.agency",
     "title1": "Síguenos en",
     "title2": "Instagram"
+  },
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "items": [
+      {
+        "question": "¿Trabajan con marcas pequeñas o solo empresas grandes?",
+        "answer": "Trabajamos con empresas de todos los tamaños, de diferentes categorías. Enfocando esfuerzos en la situación actual y en los objetivos de cada marca."
+      },
+      {
+        "question": "¿Cuánto tiempo toma el proceso?",
+        "answer": "El proceso puede durar entre 4 y 8 semanas, dependiendo de la profundidad de cada una de las etapas del proyecto."
+      },
+      {
+        "question": "¿Trabajan con empresas fuera de Colombia?",
+        "answer": "Sí, trabajamos con empresas de cualquier lugar del mundo."
+      },
+      {
+        "question": "¿Trabajan por proyecto o por acompañamiento?",
+        "answer": "Podemos trabajar en ambos modelos. Usualmente los proyectos se convierten en acompañamiento permanente a las marcas."
+      },
+      {
+        "question": "¿Entregan los archivos editables para impresión?",
+        "answer": "Sí, entregamos artes finales con todas las especificaciones técnicas para producción."
+      }
+    ]
   },
   "contact": {
     "heading": "Hablemos de tu",
