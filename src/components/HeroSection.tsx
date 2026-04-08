@@ -39,12 +39,28 @@ const HeroSection = () => {
       </Suspense>
 
       <div className="mx-auto max-w-7xl 3xl:max-w-[1600px] w-full px-6 flex-1 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 py-12">
-        <div className="flex items-center gap-12 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+        {/* Date - staggered fade in */}
+        <div
+          className="flex items-center gap-12 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
+          style={{
+            opacity: mounted ? 1 : 0,
+            transform: mounted ? "translateY(0)" : "translateY(20px)",
+            transition: "opacity 0.6s ease-out 0.3s, transform 0.6s ease-out 0.3s",
+          }}
+        >
           <span>{year}</span>
           <span>{month}—{day}</span>
         </div>
 
-        <div className="max-w-sm text-right space-y-6">
+        {/* Tagline - staggered fade in */}
+        <div
+          className="max-w-sm text-right space-y-6"
+          style={{
+            opacity: mounted ? 1 : 0,
+            transform: mounted ? "translateY(0)" : "translateY(20px)",
+            transition: "opacity 0.7s ease-out 0.5s, transform 0.7s ease-out 0.5s",
+          }}
+        >
           <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-foreground leading-tight">
             {t.hero.tagline}{" "}
             <span className="text-gradient-brand">{t.hero.taglineHighlight}</span>
@@ -58,6 +74,7 @@ const HeroSection = () => {
         </div>
       </div>
 
+      {/* Main title with 3D letter animation */}
       <div className="w-full px-4 pb-6 overflow-hidden">
         <h1 className="text-[15vw] sm:text-[12vw] md:text-[11vw] lg:text-[10vw] font-black uppercase tracking-tighter text-foreground leading-[0.85] text-center flex flex-wrap items-center justify-center gap-x-[0.15em]">
           <SplitText text="SR" delay={40} duration={0.8} />
@@ -66,9 +83,14 @@ const HeroSection = () => {
         </h1>
       </div>
 
+      {/* Bottom nav - slide up */}
       <div
-        className="border-t border-border transition-all duration-500 delay-500"
-        style={{ opacity: mounted ? 1 : 0, transform: mounted ? "translateY(0)" : "translateY(30px)" }}
+        className="border-t border-border"
+        style={{
+          opacity: mounted ? 1 : 0,
+          transform: mounted ? "translateY(0)" : "translateY(30px)",
+          transition: "opacity 0.5s ease-out 0.8s, transform 0.5s ease-out 0.8s",
+        }}
       >
         <div className="mx-auto max-w-7xl 3xl:max-w-[1600px] px-6 py-5 flex items-center justify-between">
           {heroNavItems.map((item) => (
