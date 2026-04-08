@@ -20,7 +20,7 @@ const SplitText = memo(({
   className = "",
   letterClassName = "",
   delay = 40,
-  duration = 0.6,
+  duration = 0.8,
   splitType = "chars",
 }: SplitTextProps) => {
   const ref = useRef<HTMLSpanElement>(null);
@@ -29,18 +29,23 @@ const SplitText = memo(({
   const items = splitType === "words" ? text.split(" ") : text.split("");
 
   return (
-    <span ref={ref} className={`inline-flex flex-wrap ${className}`}>
+    <span ref={ref} className={`inline-flex flex-wrap ${className}`} style={{ perspective: "800px" }}>
       {items.map((item, i) => (
         <span
           key={i}
-          className={`inline-block transition-all ${letterClassName}`}
+          className={`inline-block ${letterClassName}`}
           style={{
             opacity: isInView ? 1 : 0,
-            transform: isInView ? "translateY(0)" : "translateY(-60px)",
+            transform: isInView
+              ? "translate3d(0,0,0) rotateX(0deg)"
+              : "translate3d(0,-120px,0) rotateX(45deg)",
+            transitionProperty: "opacity, transform",
             transitionDuration: `${duration * 1000}ms`,
             transitionDelay: `${i * delay}ms`,
             transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+            transformOrigin: "center bottom",
             whiteSpace: item === " " ? "pre" : undefined,
+            willChange: isInView ? "auto" : "transform, opacity",
           }}
         >
           {item === " " ? "\u00A0" : item}
