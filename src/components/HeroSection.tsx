@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { lazy, Suspense, useState, useEffect, useMemo } from "react";
 import logoNegro from "@/assets/logo_negro.png";
 import SplitText from "./SplitText";
@@ -61,13 +60,16 @@ const HeroSection = () => {
 
       <div className="w-full px-4 pb-6 overflow-hidden">
         <h1 className="text-[15vw] sm:text-[12vw] md:text-[11vw] lg:text-[10vw] font-black uppercase tracking-tighter text-foreground leading-[0.85] text-center flex flex-wrap items-center justify-center gap-x-[0.15em]">
-          <SplitText text="SR" delay={40} duration={0.8} from={{ opacity: 0, y: -120, rotateX: 45 }} to={{ opacity: 1, y: 0, rotateX: 0 }} />
-          <SplitText text="LEON" letterClassName="text-gradient-brand" delay={40} duration={0.8} from={{ opacity: 0, y: -120, rotateX: 45 }} to={{ opacity: 1, y: 0, rotateX: 0 }} />
-          <SplitText text="AGENCIA" delay={40} duration={0.8} from={{ opacity: 0, y: -120, rotateX: 45 }} to={{ opacity: 1, y: 0, rotateX: 0 }} />
+          <SplitText text="SR" delay={40} duration={0.8} />
+          <SplitText text="LEON" letterClassName="text-gradient-brand" delay={40} duration={0.8} />
+          <SplitText text="AGENCIA" delay={40} duration={0.8} />
         </h1>
       </div>
 
-      <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.5 }} className="border-t border-border">
+      <div
+        className="border-t border-border transition-all duration-500 delay-500"
+        style={{ opacity: mounted ? 1 : 0, transform: mounted ? "translateY(0)" : "translateY(30px)" }}
+      >
         <div className="mx-auto max-w-7xl 3xl:max-w-[1600px] px-6 py-5 flex items-center justify-between">
           {heroNavItems.map((item) => (
             <button key={item.label} onClick={() => handleScroll(item.href)} className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
@@ -75,7 +77,7 @@ const HeroSection = () => {
             </button>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };

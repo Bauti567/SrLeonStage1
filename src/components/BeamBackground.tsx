@@ -10,34 +10,28 @@ interface Beam {
   opacity: number;
   pulse: number;
   pulseSpeed: number;
-  layer: number;
 }
 
-function createBeam(width: number, height: number, layer: number): Beam {
-  const angle = -35 + Math.random() * 10;
-  const baseSpeed = 0.2 + layer * 0.2;
-  const baseOpacity = 0.08 + layer * 0.05;
-  const baseWidth = 10 + layer * 5;
+function createBeam(width: number, height: number): Beam {
   return {
     x: Math.random() * width,
     y: Math.random() * height,
-    width: baseWidth,
+    width: 12 + Math.random() * 8,
     length: height * 2.5,
-    angle,
-    speed: baseSpeed + Math.random() * 0.2,
-    opacity: baseOpacity + Math.random() * 0.1,
+    angle: -35 + Math.random() * 10,
+    speed: 0.3 + Math.random() * 0.3,
+    opacity: 0.08 + Math.random() * 0.08,
     pulse: Math.random() * Math.PI * 2,
-    pulseSpeed: 0.01 + Math.random() * 0.015,
-    layer,
+    pulseSpeed: 0.01 + Math.random() * 0.01,
   };
 }
 
-const LAYERS = 2;
-const BEAMS_PER_LAYER = 4;
+const BEAM_COUNT = 5;
+const TARGET_FPS = 30;
+const FRAME_INTERVAL = 1000 / TARGET_FPS;
 
 const BeamBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const beamsRef = useRef<Beam[]>([]);
   const animationFrameRef = useRef(0);
 
   useEffect(() => {
@@ -46,78 +40,69 @@ const BeamBackground = () => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const resizeCanvas = () => {
+    let beams: Beam[] = [];
+    let w = 0, h = 0;
+
+    const resize = () => {
       const dpr = window.devicePixelRatio || 1;
       const parent = canvas.parentElement;
-      const w = parent?.clientWidth || window.innerWidth;
-      const h = parent?.clientHeight || window.innerHeight;
+      w = parent?.clientWidth || window.innerWidth;
+      h = parent?.clientHeight || window.innerHeight;
       canvas.width = w * dpr;
       canvas.height = h * dpr;
       canvas.style.width = `${w}px`;
       canvas.style.height = `${h}px`;
-      ctx.setTransform(1, 0, 0, 1, 0, 0);
-      ctx.scale(dpr, dpr);
-
-      beamsRef.current = [];
-      for (let layer = 1; layer <= LAYERS; layer++) {
-        for (let i = 0; i < BEAMS_PER_LAYER; i++) {
-          beamsRef.current.push(createBeam(w, h, layer));
-        }
-      }
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      beams = Array.from({ length: BEAM_COUNT }, () => createBeam(w, h));
     };
 
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
+    resize();
+    window.addEventListener("resize", resize);
 
-    const drawBeam = (beam: Beam) => {
-      ctx.save();
-      ctx.translate(beam.x, beam.y);
-      ctx.rotate((beam.angle * Math.PI) / 180);
-
-      const pulsingOpacity = Math.min(1, beam.opacity * (0.8 + Math.sin(beam.pulse) * 0.4));
-      const gradient = ctx.createLinearGradient(0, 0, 0, beam.length);
-
-      // Green-lime to orange palette
-      const t = (beam.x / (canvas.width / (window.devicePixelRatio || 1)));
-      const r = Math.round(100 + t * 155);
-      const g = Math.round(200 - t * 100);
-      const b = Math.round(0 + t * 20);
-
-      gradient.addColorStop(0, `rgba(${r},${g},${b},0)`);
-      gradient.addColorStop(0.2, `rgba(${r},${g},${b},${pulsingOpacity * 0.5})`);
-      gradient.addColorStop(0.5, `rgba(${r},${g},${b},${pulsingOpacity})`);
-      gradient.addColorStop(0.8, `rgba(${r},${g},${b},${pulsingOpacity * 0.5})`);
-      gradient.addColorStop(1, `rgba(${r},${g},${b},0)`);
-
-      ctx.fillStyle = gradient;
-      ctx.filter = `blur(${2 + beam.layer * 2}px)`;
-      ctx.fillRect(-beam.width / 2, 0, beam.width, beam.length);
-      ctx.restore();
-    };
-
-    const animate = () => {
-      if (!canvas || !ctx) return;
-      const w = canvas.width / (window.devicePixelRatio || 1);
-      const h = canvas.height / (window.devicePixelRatio || 1);
+    let lastTime = 0;
+    const animate = (time: number) => {
+      animationFrameRef.current = requestAnimationFrame(animate);
+      if (time - lastTime < FRAME_INTERVAL) return;
+      lastTime = time;
 
       ctx.clearRect(0, 0, w, h);
 
-      beamsRef.current.forEach((beam) => {
-        beam.y -= beam.speed * (beam.layer / LAYERS + 0.5);
+      for (const beam of beams) {
+        beam.y -= beam.speed;
         beam.pulse += beam.pulseSpeed;
         if (beam.y + beam.length < -50) {
           beam.y = h + 50;
           beam.x = Math.random() * w;
         }
-        drawBeam(beam);
-      });
 
-      animationFrameRef.current = requestAnimationFrame(animate);
+        ctx.save();
+        ctx.translate(beam.x, beam.y);
+        ctx.rotate((beam.angle * Math.PI) / 180);
+
+        const op = beam.opacity * (0.8 + Math.sin(beam.pulse) * 0.3);
+        const t = beam.x / w;
+        const r = Math.round(100 + t * 155);
+        const g = Math.round(200 - t * 100);
+        const b = Math.round(t * 20);
+
+        const grad = ctx.createLinearGradient(0, 0, 0, beam.length);
+        grad.addColorStop(0, `rgba(${r},${g},${b},0)`);
+        grad.addColorStop(0.3, `rgba(${r},${g},${b},${op * 0.5})`);
+        grad.addColorStop(0.5, `rgba(${r},${g},${b},${op})`);
+        grad.addColorStop(0.7, `rgba(${r},${g},${b},${op * 0.5})`);
+        grad.addColorStop(1, `rgba(${r},${g},${b},0)`);
+
+        ctx.fillStyle = grad;
+        ctx.filter = "blur(4px)";
+        ctx.fillRect(-beam.width / 2, 0, beam.width, beam.length);
+        ctx.restore();
+      }
     };
-    animate();
+
+    animationFrameRef.current = requestAnimationFrame(animate);
 
     return () => {
-      window.removeEventListener("resize", resizeCanvas);
+      window.removeEventListener("resize", resize);
       cancelAnimationFrame(animationFrameRef.current);
     };
   }, []);
