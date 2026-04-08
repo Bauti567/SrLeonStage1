@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import logoNegro from "@/assets/logo_negro.png";
 import { useI18n } from "@/hooks/use-i18n";
@@ -47,10 +46,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+    <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled ? "glass-surface border-b border-border shadow-sm" : "bg-transparent"
       }`}
@@ -86,39 +82,38 @@ const Navbar = () => {
         </div>
       </div>
 
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            ref={menuRef}
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="overflow-hidden border-b border-border bg-background"
-          >
-            <div className="px-6 py-10 max-w-7xl mx-auto">
-              <ul className="flex flex-col gap-6">
-                {navItems.map((item, i) => (
-                  <motion.li
-                    key={item.label + item.href}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.08 }}
-                  >
-                    <button
-                      onClick={() => handleClick(item.href)}
-                      className="text-3xl md:text-5xl font-bold text-foreground hover:text-primary transition-colors uppercase tracking-wide"
-                    >
-                      {item.label}
-                    </button>
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+      <div
+        ref={menuRef}
+        className="overflow-hidden border-b border-border bg-background transition-all duration-400 ease-in-out"
+        style={{
+          maxHeight: menuOpen ? "500px" : "0",
+          opacity: menuOpen ? 1 : 0,
+        }}
+      >
+        <div className="px-6 py-10 max-w-7xl mx-auto">
+          <ul className="flex flex-col gap-6">
+            {navItems.map((item, i) => (
+              <li
+                key={item.label + item.href}
+                className="transition-all duration-300"
+                style={{
+                  opacity: menuOpen ? 1 : 0,
+                  transform: menuOpen ? "translateX(0)" : "translateX(-20px)",
+                  transitionDelay: menuOpen ? `${i * 60}ms` : "0ms",
+                }}
+              >
+                <button
+                  onClick={() => handleClick(item.href)}
+                  className="text-3xl md:text-5xl font-bold text-foreground hover:text-primary transition-colors uppercase tracking-wide"
+                >
+                  {item.label}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </nav>
   );
 };
 
