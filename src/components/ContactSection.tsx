@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { useI18n } from "@/hooks/use-i18n";
@@ -47,14 +47,21 @@ const ContactSection = () => {
     <section id="contact" className="py-28 px-6" ref={ref}>
       <div className="mx-auto max-w-6xl 3xl:max-w-7xl">
         <div className="grid md:grid-cols-2 gap-16 items-start">
-          <motion.div initial={{ opacity: 0, x: -30 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6 }} className="space-y-6">
+          <div
+            className="space-y-6 transition-all duration-700"
+            style={{ opacity: isInView ? 1 : 0, transform: isInView ? "translateX(0)" : "translateX(-30px)" }}
+          >
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-foreground leading-[1.05] uppercase tracking-tight">
               {t.contact.heading}{" "}<span className="text-gradient-brand">{t.contact.headingHighlight}</span>.
             </h2>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">{t.contact.subtitle}</p>
-          </motion.div>
+          </div>
 
-          <motion.form initial={{ opacity: 0, x: 30 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6, delay: 0.2 }} onSubmit={handleSubmit} className="space-y-8">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-8 transition-all duration-700 delay-200"
+            style={{ opacity: isInView ? 1 : 0, transform: isInView ? "translateX(0)" : "translateX(30px)" }}
+          >
             <WaveInput label={t.contact.form.name} value={form.name} onChange={(v) => setForm({ ...form, name: v })} required />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
               <WaveInput label={t.contact.form.email} value={form.email} onChange={(v) => setForm({ ...form, email: v })} type="email" required />
@@ -106,7 +113,7 @@ const ContactSection = () => {
               <span className="animated-btn-circle" />
               <ArrowIcon />
             </button>
-          </motion.form>
+          </form>
         </div>
       </div>
     </section>
