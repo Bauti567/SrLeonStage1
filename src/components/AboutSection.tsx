@@ -13,7 +13,7 @@ const AboutSection = () => {
   const cardsInView = useInView(cardsRef, { once: true, margin: "-60px" });
 
   return (
-    <section id="about" className="py-28 px-6" ref={ref}>
+    <section id="about" className="py-16 sm:py-28 px-4 sm:px-6" ref={ref}>
       <div className="mx-auto max-w-6xl 3xl:max-w-7xl">
         <div className="mb-20">
           {/* Label fade in */}

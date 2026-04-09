@@ -33,15 +33,15 @@ const HeroSection = () => {
   if (!mounted) return <section id="hero" className="relative min-h-screen bg-background" />;
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-background pt-24">
+    <section id="hero" className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-background pt-16 sm:pt-24">
       <Suspense fallback={null}>
         <BeamBackground />
       </Suspense>
 
-      <div className="mx-auto max-w-7xl 3xl:max-w-[1600px] w-full px-6 flex-1 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 py-12">
-        {/* Date - staggered fade in */}
+      <div className="mx-auto max-w-7xl 3xl:max-w-[1600px] w-full px-4 sm:px-6 flex-1 flex flex-col gap-6 sm:gap-8 py-8 sm:py-12">
+        {/* Date */}
         <div
-          className="flex items-center gap-12 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
+          className="flex items-center gap-6 sm:gap-12 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
           style={{
             opacity: mounted ? 1 : 0,
             transform: mounted ? "translateY(0)" : "translateY(20px)",
@@ -52,38 +52,40 @@ const HeroSection = () => {
           <span>{month}—{day}</span>
         </div>
 
-        {/* Tagline - staggered fade in */}
-        <div
-          className="max-w-sm text-right space-y-6"
-          style={{
-            opacity: mounted ? 1 : 0,
-            transform: mounted ? "translateY(0)" : "translateY(20px)",
-            transition: "opacity 0.7s ease-out 0.5s, transform 0.7s ease-out 0.5s",
-          }}
-        >
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-foreground leading-tight">
-            {t.hero.tagline}{" "}
-            <span className="text-gradient-brand">{t.hero.taglineHighlight}</span>
-          </h2>
-          <div className="flex items-center justify-end gap-3">
-            <img src={logoNegro} alt="Sr Leon Agencia logo" className="w-8 h-8 object-contain dark:invert" />
-            <span className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground leading-tight">
-              {t.hero.motto1}<br />{t.hero.motto2}
-            </span>
+        {/* Tagline - pushed to bottom on mobile */}
+        <div className="flex-1 flex items-end sm:items-center justify-end">
+          <div
+            className="max-w-xs sm:max-w-sm text-right space-y-4 sm:space-y-6"
+            style={{
+              opacity: mounted ? 1 : 0,
+              transform: mounted ? "translateY(0)" : "translateY(20px)",
+              transition: "opacity 0.7s ease-out 0.5s, transform 0.7s ease-out 0.5s",
+            }}
+          >
+            <h2 className="text-lg sm:text-2xl md:text-3xl font-black text-foreground leading-tight">
+              {t.hero.tagline}{" "}
+              <span className="text-gradient-brand">{t.hero.taglineHighlight}</span>
+            </h2>
+            <div className="flex items-center justify-end gap-3">
+              <img src={logoNegro} alt="Sr Leon Agencia logo" className="w-6 h-6 sm:w-8 sm:h-8 object-contain dark:invert" />
+              <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.15em] text-muted-foreground leading-tight">
+                {t.hero.motto1}<br />{t.hero.motto2}
+              </span>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Main title with 3D letter animation */}
-      <div className="w-full px-4 pb-6 overflow-hidden">
-        <h1 className="text-[15vw] sm:text-[12vw] md:text-[11vw] lg:text-[10vw] font-black uppercase tracking-tighter text-foreground leading-[0.85] text-center flex flex-wrap items-center justify-center gap-x-[0.15em]">
+      {/* Main title */}
+      <div className="w-full px-2 sm:px-4 pb-4 sm:pb-6 overflow-hidden">
+        <h1 className="text-[13vw] sm:text-[12vw] md:text-[11vw] lg:text-[10vw] font-black uppercase tracking-tighter text-foreground leading-[0.85] text-center flex flex-wrap items-center justify-center gap-x-[0.1em] sm:gap-x-[0.15em]">
           <SplitText text="SR" delay={40} duration={0.8} />
           <SplitText text="LEON" letterClassName="text-gradient-brand" delay={40} duration={0.8} />
           <SplitText text="AGENCIA" delay={40} duration={0.8} />
         </h1>
       </div>
 
-      {/* Bottom nav - slide up */}
+      {/* Bottom nav */}
       <div
         className="border-t border-border"
         style={{
@@ -92,9 +94,9 @@ const HeroSection = () => {
           transition: "opacity 0.5s ease-out 0.8s, transform 0.5s ease-out 0.8s",
         }}
       >
-        <div className="mx-auto max-w-7xl 3xl:max-w-[1600px] px-6 py-5 flex items-center justify-between">
+        <div className="mx-auto max-w-7xl 3xl:max-w-[1600px] px-4 sm:px-6 py-3 sm:py-5 flex items-center justify-between gap-2">
           {heroNavItems.map((item) => (
-            <button key={item.label} onClick={() => handleScroll(item.href)} className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
+            <button key={item.label} onClick={() => handleScroll(item.href)} className="text-[8px] sm:text-xs font-semibold uppercase tracking-[0.1em] sm:tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
               {item.label}
             </button>
           ))}
