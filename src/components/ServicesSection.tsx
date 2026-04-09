@@ -52,6 +52,7 @@ const ServiceCard = memo(({ service, image, isActive, learnMore }: { service: Se
         </div>
       </div>
     </div>
+  </div>
 ));
 
 ServiceCard.displayName = "ServiceCard";
