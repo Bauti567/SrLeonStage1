@@ -51,32 +51,32 @@ const Navbar = () => {
         scrolled ? "glass-surface border-b border-border shadow-sm" : "bg-transparent"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
-        <div className="flex items-center gap-6">
-          <img src={logoNegro} alt="Sr Leon Agencia" className="w-8 h-8 object-contain dark:invert" />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-3 sm:py-5 flex items-center justify-between">
+        <div className="flex items-center gap-3 sm:gap-6">
+          <img src={logoNegro} alt="Sr Leon Agencia" className="w-7 h-7 sm:w-8 sm:h-8 object-contain dark:invert" />
           <button
             ref={buttonRef}
             onClick={() => setMenuOpen(!menuOpen)}
-            className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground hover:text-muted-foreground transition-colors"
+            className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.15em] sm:tracking-[0.2em] text-foreground hover:text-muted-foreground transition-colors"
           >
             {menuOpen ? t.nav.close : t.nav.menu}
           </button>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
           <button
             onClick={toggleLang}
-            className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors border border-border rounded-full px-3 py-1"
+            className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors border border-border rounded-full px-2 sm:px-3 py-1"
           >
             {lang === "es" ? "EN" : "ES"}
           </button>
           <button
             onClick={() => handleClick("#contact")}
-            className="group flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-foreground hover:text-muted-foreground transition-colors"
+            className="group flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.1em] sm:tracking-[0.15em] text-foreground hover:text-muted-foreground transition-colors"
           >
-            {t.nav.letsTalk}
-            <span className="inline-flex items-center justify-center rounded-full border border-foreground w-7 h-7 group-hover:bg-foreground group-hover:text-background transition-all duration-300">
-              <ArrowUpRight className="h-3.5 w-3.5" />
+            <span className="hidden xs:inline">{t.nav.letsTalk}</span>
+            <span className="inline-flex items-center justify-center rounded-full border border-foreground w-6 h-6 sm:w-7 sm:h-7 group-hover:bg-foreground group-hover:text-background transition-all duration-300">
+              <ArrowUpRight className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
             </span>
           </button>
         </div>
@@ -90,8 +90,8 @@ const Navbar = () => {
           opacity: menuOpen ? 1 : 0,
         }}
       >
-        <div className="px-6 py-10 max-w-7xl mx-auto">
-          <ul className="flex flex-col gap-6">
+        <div className="px-4 sm:px-6 py-8 sm:py-10 max-w-7xl mx-auto">
+          <ul className="flex flex-col gap-4 sm:gap-6">
             {navItems.map((item, i) => (
               <li
                 key={item.label + item.href}
@@ -104,7 +104,7 @@ const Navbar = () => {
               >
                 <button
                   onClick={() => handleClick(item.href)}
-                  className="text-3xl md:text-5xl font-bold text-foreground hover:text-primary transition-colors uppercase tracking-wide"
+                  className="text-2xl sm:text-3xl md:text-5xl font-bold text-foreground hover:text-primary transition-colors uppercase tracking-wide"
                 >
                   {item.label}
                 </button>

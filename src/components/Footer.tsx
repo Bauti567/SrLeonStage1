@@ -6,7 +6,7 @@ const Footer = () => {
   const { t } = useI18n();
 
   return (
-    <footer className="border-t border-border py-16 px-6">
+    <footer className="border-t border-border py-10 sm:py-16 px-4 sm:px-6">
       <div className="mx-auto max-w-6xl 3xl:max-w-7xl">
         <div className="flex flex-col md:flex-row items-start justify-between gap-8 mb-16">
           <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground max-w-xs leading-relaxed">

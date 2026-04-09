@@ -10,10 +10,10 @@ const FaqSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-28 px-6" ref={ref}>
+    <section id="faq" className="py-16 sm:py-28 px-4 sm:px-6" ref={ref}>
       <div className="max-w-6xl 3xl:max-w-7xl mx-auto">
         <h2
-          className="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-gradient-brand mb-16 transition-all duration-700"
+          className="text-2xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-gradient-brand mb-8 sm:mb-16 transition-all duration-700"
           style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(30px)" }}
         >
           {t.faq.title}

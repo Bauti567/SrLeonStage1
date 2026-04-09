@@ -25,13 +25,13 @@ const ServiceCard = memo(({ service, image, isActive, learnMore }: { service: Se
       pointerEvents: isActive ? "auto" : "none",
     }}
   >
-    <div className="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-center px-6 md:px-12">
-      <div className="md:col-span-5 space-y-6">
+    <div className="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center px-4 sm:px-6 md:px-12">
+      <div className="md:col-span-5 space-y-4 sm:space-y-6">
         <div className="space-y-2">
           <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-muted-foreground">
             ({service.id}) — {service.tag}
           </span>
-          <h3 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tighter text-foreground leading-[0.9] whitespace-pre-line">
+          <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-foreground leading-[0.9] whitespace-pre-line">
             {service.title}
           </h3>
         </div>
@@ -77,15 +77,15 @@ const ServicesSection = () => {
   return (
     <section id="services" ref={containerRef} style={{ height: `${(itemCount + 1) * 100}vh` }}>
       <div className="sticky top-0 h-screen overflow-hidden bg-background">
-        <div className="absolute top-8 left-8 z-10">
+        <div className="absolute top-16 sm:top-8 left-4 sm:left-8 z-10">
           <p className="text-[10px] uppercase tracking-[0.3em] font-semibold text-muted-foreground">{t.services.label}</p>
         </div>
-        <div className="absolute top-8 right-8 z-10">
+        <div className="absolute top-16 sm:top-8 right-4 sm:right-8 z-10">
           <span className="text-xs font-mono text-muted-foreground">
             {String(activeIndex + 1).padStart(2, "0")} / {String(itemCount).padStart(2, "0")}
           </span>
         </div>
-        <div className="relative h-full flex flex-col justify-end pb-12 px-6 md:px-12">
+        <div className="relative h-full flex flex-col justify-end pb-8 sm:pb-12 px-4 sm:px-6 md:px-12">
           {t.services.items.map((service, i) => (
             <ServiceCard key={service.id} service={service} image={serviceImages[i]} isActive={activeIndex === i} learnMore={t.services.learnMore} />
           ))}

@@ -44,9 +44,9 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-28 px-6" ref={ref}>
+    <section id="contact" className="py-16 sm:py-28 px-4 sm:px-6" ref={ref}>
       <div className="mx-auto max-w-6xl 3xl:max-w-7xl">
-        <div className="grid md:grid-cols-2 gap-16 items-start">
+        <div className="grid md:grid-cols-2 gap-10 sm:gap-16 items-start">
           <div
             className="space-y-6 transition-all duration-700"
             style={{ opacity: isInView ? 1 : 0, transform: isInView ? "translateX(0)" : "translateX(-30px)" }}

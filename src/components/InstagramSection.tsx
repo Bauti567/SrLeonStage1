@@ -18,14 +18,14 @@ const InstagramSection = () => {
   const gridInView = useInView(gridRef, { once: true, margin: "-80px" });
 
   return (
-    <section id="instagram" className="py-28 px-6">
+    <section id="instagram" className="py-16 sm:py-28 px-4 sm:px-6">
       <div className="max-w-6xl 3xl:max-w-7xl mx-auto">
-        <div className="flex flex-col items-center gap-4 mb-16">
+        <div className="flex flex-col items-center gap-4 mb-8 sm:mb-16">
           <div className="inline-flex items-center gap-3">
-            <Instagram className="w-6 h-6 text-foreground" />
-            <span className="text-sm font-mono uppercase tracking-widest text-muted-foreground">{t.instagram.handle}</span>
+            <Instagram className="w-5 h-5 sm:w-6 sm:h-6 text-foreground" />
+            <span className="text-xs sm:text-sm font-mono uppercase tracking-widest text-muted-foreground">{t.instagram.handle}</span>
           </div>
-          <h2 className="text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-tight leading-none text-foreground text-center">
+          <h2 className="text-3xl sm:text-5xl md:text-7xl font-black uppercase tracking-tight leading-none text-foreground text-center">
             {t.instagram.title1}<br />
             <span className="text-gradient-brand">{t.instagram.title2}</span>
           </h2>

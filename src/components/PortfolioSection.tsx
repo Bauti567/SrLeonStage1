@@ -17,7 +17,7 @@ const PortfolioSection = () => {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <div ref={ref} className="pb-28 px-6">
+    <div ref={ref} className="pb-16 sm:pb-28 px-4 sm:px-6">
       <div className="max-w-6xl 3xl:max-w-7xl mx-auto">
         <div
           className="mb-12 transition-all duration-700"
