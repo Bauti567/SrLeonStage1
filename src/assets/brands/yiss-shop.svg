@@ -1,0 +1,9 @@
+<svg width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="110" cy="110" r="104" fill="white" stroke="#D4AF37" stroke-width="6"/>
+  <path d="M132 52C150 58 164 76 164 96C164 120 148 140 126 150C130 136 126 122 112 116C126 114 136 102 136 88C136 74 126 62 132 52Z" fill="#D4AF37" opacity="0.75"/>
+  <path d="M58 72L66 58L78 72L90 58L98 72" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="58" y="130" font-size="88" font-family="Times New Roman, serif" font-weight="700" fill="black">Y</text>
+  <text x="108" y="170" font-size="88" font-family="Times New Roman, serif" font-weight="700" fill="black">S</text>
+  <text x="110" y="138" text-anchor="middle" font-size="28" font-family="cursive" fill="black">Yiss shop</text>
+  <text x="110" y="190" text-anchor="middle" font-size="11" letter-spacing="5" font-family="Arial" fill="black">IMPORTACIONES</text>
+</svg>
