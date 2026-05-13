@@ -36,7 +36,7 @@ const InstagramSection = () => {
             {igPosts.map((src, i) => (
               <a
                 key={i}
-                href="https://instagram.com/srleon.agency"
+                href={t.instagram.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative aspect-square overflow-hidden rounded-lg transition-all duration-500"
