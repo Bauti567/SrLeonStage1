@@ -2,6 +2,7 @@ import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { useI18n } from "@/hooks/use-i18n";
+import AnimatedSelect from "@/components/AnimatedSelect";
 
 interface WaveInputProps {
   label: string;
@@ -69,24 +70,13 @@ const ContactSection = () => {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
               <WaveInput label={t.contact.form.company} value={form.company} onChange={(v) => setForm({ ...form, company: v })} />
-              <div className="wave-group w-full relative">
-                <select
-                  value={form.inquiry}
-                  onChange={(e) => setForm({ ...form, inquiry: e.target.value })}
-                  required
-                  className="wave-input w-full border-b border-border bg-transparent py-3 text-foreground text-sm focus:outline-none appearance-none cursor-pointer pr-8"
-                  style={{ WebkitAppearance: "none" }}
-                >
-                  <option value="" disabled className="bg-background text-muted-foreground">{t.contact.form.inquiry}</option>
-                  {t.contact.inquiryOptions.map((opt) => (
-                    <option key={opt} value={opt} className="bg-background text-foreground py-2">{opt}</option>
-                  ))}
-                </select>
-                <svg className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-                <span className="wave-bar" />
-              </div>
+              <AnimatedSelect
+                value={form.inquiry}
+                onChange={(v) => setForm({ ...form, inquiry: v })}
+                options={t.contact.inquiryOptions}
+                placeholder={t.contact.form.inquiry}
+                required
+              />
             </div>
             <div>
               <p className="text-sm font-semibold text-foreground mb-3">{t.contact.form.budget}</p>

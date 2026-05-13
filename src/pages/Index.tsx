@@ -9,6 +9,7 @@ const ServicesSection = lazy(() => import("@/components/ServicesSection"));
 const CeoSection = lazy(() => import("@/components/CeoSection"));
 const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
 const PortfolioSection = lazy(() => import("@/components/PortfolioSection"));
+const BrandsCarousel = lazy(() => import("@/components/BrandsCarousel"));
 const InstagramSection = lazy(() => import("@/components/InstagramSection"));
 const FaqSection = lazy(() => import("@/components/FaqSection"));
 const ContactSection = lazy(() => import("@/components/ContactSection"));
@@ -28,6 +29,7 @@ const Index = () => {
         <CeoSection />
         <TestimonialsSection />
         <PortfolioSection />
+        <BrandsCarousel />
         <InstagramSection />
         <FaqSection />
         <div ref={contactRef}>

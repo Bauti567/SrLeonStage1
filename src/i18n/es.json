@@ -107,10 +107,14 @@
     "title": "Contenido que hemos creado",
     "subtitle": "Algunos de nuestros trabajos más recientes"
   },
+  "brands": {
+    "heading": "Marcas con las que hemos trabajado"
+  },
   "instagram": {
-    "handle": "@srleon.agency",
+    "handle": "@srleonagencia",
     "title1": "Síguenos en",
-    "title2": "Instagram"
+    "title2": "Instagram",
+    "url": "https://www.instagram.com/srleonagencia/"
   },
   "faq": {
     "title": "Preguntas frecuentes",
