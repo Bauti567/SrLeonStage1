@@ -25,7 +25,7 @@ const BrandsCarousel = () => {
     <section className="py-12 sm:py-20 px-4 sm:px-6 border-y border-border/50">
       <div className="max-w-6xl 3xl:max-w-7xl mx-auto">
         <p className="text-center text-xs uppercase tracking-[0.3em] text-muted-foreground mb-8">
-          {t.brands?.heading ?? "Marcas con las que hemos trabajado"}
+          {t.brands.heading}
         </p>
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex items-center">
