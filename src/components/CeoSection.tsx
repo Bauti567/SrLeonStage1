@@ -19,7 +19,7 @@ const CeoSection = () => {
       >
         <div className="relative w-48 h-48 sm:w-56 sm:h-56 flex-shrink-0">
           <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-accent opacity-30 blur-xl" />
-          <img src={ceoDalton} alt={`${t.ceo.name} - ${t.ceo.role}`} className="relative w-full h-full rounded-full object-cover border-2 border-border" loading="lazy" />
+          <img src={ceoDalton} alt={`${t.ceo.name} - ${t.ceo.role}`} className="relative w-full h-full rounded-full object-cover border-2 border-border" style={{ objectPosition: "center 20%" }} loading="lazy" />
         </div>
         <div className="text-center md:text-left">
           <h3 className="text-4xl sm:text-5xl md:text-6xl font-black text-foreground uppercase tracking-tight leading-[0.95]">
