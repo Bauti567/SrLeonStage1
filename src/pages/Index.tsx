@@ -6,10 +6,12 @@ import WhatsAppBubble from "@/components/WhatsAppBubble";
 
 const AboutSection = lazy(() => import("@/components/AboutSection"));
 const ServicesSection = lazy(() => import("@/components/ServicesSection"));
+const ServicesGrid = lazy(() => import("@/components/ServicesGrid"));
 const CeoSection = lazy(() => import("@/components/CeoSection"));
-const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
-const PortfolioSection = lazy(() => import("@/components/PortfolioSection"));
+const TestimonialsHeader = lazy(() => import("@/components/TestimonialsHeader"));
 const BrandsCarousel = lazy(() => import("@/components/BrandsCarousel"));
+const PortfolioSection = lazy(() => import("@/components/PortfolioSection"));
+const TestimonialsCards = lazy(() => import("@/components/TestimonialsCards"));
 const InstagramSection = lazy(() => import("@/components/InstagramSection"));
 const FaqSection = lazy(() => import("@/components/FaqSection"));
 const ContactSection = lazy(() => import("@/components/ContactSection"));
@@ -26,10 +28,12 @@ const Index = () => {
       <Suspense fallback={null}>
         <AboutSection />
         <ServicesSection />
+        <ServicesGrid />
         <CeoSection />
-        <TestimonialsSection />
-        <PortfolioSection />
+        <TestimonialsHeader />
         <BrandsCarousel />
+        <PortfolioSection />
+        <TestimonialsCards />
         <InstagramSection />
         <FaqSection />
         <div ref={contactRef}>
