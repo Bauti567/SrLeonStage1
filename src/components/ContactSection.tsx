@@ -116,12 +116,23 @@ const ContactSection = () => {
               </label>
               <span className="wave-bar" />
             </div>
-            <button type="submit" className="animated-btn">
-              <ArrowIcon />
-              <span className="animated-btn-text">{t.contact.form.submit}</span>
-              <span className="animated-btn-circle" />
-              <ArrowIcon />
-            </button>
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+              <button type="submit" className="animated-btn">
+                <ArrowIcon />
+                <span className="animated-btn-text">{t.contact.form.submit}</span>
+                <span className="animated-btn-circle" />
+                <ArrowIcon />
+              </button>
+              <button
+                type="button"
+                onClick={handleWhatsApp}
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#25D366] text-white text-sm font-semibold hover:scale-105 hover:shadow-lg hover:shadow-[#25D366]/30 transition-all duration-300"
+                aria-label="Contactar por WhatsApp"
+              >
+                <WhatsAppIcon />
+                <span>WhatsApp</span>
+              </button>
+            </div>
           </form>
         </div>
       </div>
