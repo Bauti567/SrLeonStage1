@@ -27,18 +27,18 @@ const BrandsCarousel = () => {
   );
 
   return (
-    <div className="py-6 sm:py-10">
-      <div className="max-w-6xl 3xl:max-w-7xl mx-auto">
+    <div className="py-8 sm:py-12">
+      <div className="max-w-7xl 3xl:max-w-[1600px] mx-auto">
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex items-center">
             {looped.map((brand, i) => (
               <div
                 key={`${brand.id}-${i}`}
-                className="flex-shrink-0 px-6 sm:px-10 flex items-center justify-center"
+                className="flex-shrink-0 px-8 sm:px-14 flex items-center justify-center group"
                 aria-label={brand.name}
               >
                 <div
-                  className="h-14 sm:h-16 w-24 sm:w-28 bg-muted-foreground/70 hover:bg-foreground transition-colors duration-300"
+                  className="h-20 sm:h-24 md:h-28 w-32 sm:w-40 md:w-48 bg-muted-foreground/80 group-hover:bg-transparent group-hover:bg-gradient-to-r group-hover:from-[hsl(80,70%,50%)] group-hover:to-[hsl(50,95%,60%)] transition-all duration-300"
                   style={{
                     WebkitMaskImage: `url(${brand.image})`,
                     maskImage: `url(${brand.image})`,

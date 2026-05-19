@@ -32,8 +32,8 @@ const Index = () => {
         <CeoSection />
         <TestimonialsHeader />
         <BrandsCarousel />
-        <PortfolioSection />
         <TestimonialsCards />
+        <PortfolioSection />
         <InstagramSection />
         <FaqSection />
         <div ref={contactRef}>
