@@ -4,7 +4,6 @@ import yiss from "@/assets/brands/yiss.svg";
 import mg21 from "@/assets/brands/mg21.svg";
 import bermellon from "@/assets/brands/bermellon.svg";
 import soishop from "@/assets/brands/soishop.svg";
-import ceo from "@/assets/brands/ceo.svg";
 import dcars from "@/assets/brands/dcars.svg";
 import moratos from "@/assets/brands/moratos.svg";
 
@@ -13,7 +12,6 @@ const brands = [
   { id: "mg21", name: "MG21", image: mg21 },
   { id: "bermellon", name: "Bermellón", image: bermellon },
   { id: "soishop", name: "Soishop", image: soishop },
-  { id: "ceo", name: "CEO", image: ceo },
   { id: "dcars", name: "DCARS", image: dcars },
   { id: "moratos", name: "Moratos Iphone", image: moratos },
 ];
