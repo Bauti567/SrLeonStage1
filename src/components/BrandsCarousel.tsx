@@ -6,8 +6,10 @@ import bermellon from "@/assets/brands/bermellon.svg";
 import soishop from "@/assets/brands/soishop.svg";
 import dcars from "@/assets/brands/dcars.svg";
 import moratos from "@/assets/brands/moratos.svg";
+import iconik from "@/assets/brands/iconik.svg";
 
 const brands = [
+  { id: "iconik", name: "Iconik", image: iconik },
   { id: "yiss", name: "Yiss Shop", image: yiss },
   { id: "mg21", name: "MG21", image: mg21 },
   { id: "bermellon", name: "Bermellón", image: bermellon },
@@ -36,7 +38,7 @@ const BrandsCarousel = () => {
                 aria-label={brand.name}
               >
                 <div
-                  className="h-20 sm:h-24 md:h-28 w-32 sm:w-40 md:w-48 bg-muted-foreground/80 group-hover:bg-transparent group-hover:bg-gradient-to-r group-hover:from-[hsl(80,70%,50%)] group-hover:to-[hsl(50,95%,60%)] transition-all duration-300"
+                  className="h-16 sm:h-20 md:h-24 w-28 sm:w-36 md:w-44 bg-muted-foreground/80 group-hover:bg-transparent group-hover:bg-gradient-to-r group-hover:from-[hsl(80,70%,50%)] group-hover:to-[hsl(50,95%,60%)] transition-all duration-300"
                   style={{
                     WebkitMaskImage: `url(${brand.image})`,
                     maskImage: `url(${brand.image})`,
